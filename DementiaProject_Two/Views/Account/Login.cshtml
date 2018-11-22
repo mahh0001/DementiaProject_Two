@@ -2,21 +2,25 @@
 @{
     ViewData["Title"] = "Log in";
 }
+<section id="one">
+    <div class="inner">
+        <h2>Index</h2>
+        @using (Html.BeginForm("Login", "Account"))
+        {
+            @Html.ValidationSummary()
+            @Html.AntiForgeryToken()
+            <p>
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email)
+            </p>
+            <p>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+            </p>
 
-@using (Html.BeginForm("Login", "Account"))
-{
-    @Html.ValidationSummary()
-    @Html.AntiForgeryToken()
-<p>
-    @Html.LabelFor(m => m.Email)
-    @Html.TextBoxFor(m => m.Email)
-</p>
-<p>
-    @Html.LabelFor(m => m.Password)
-    @Html.PasswordFor(m => m.Password)
-</p> 
+            <button type="submit">Login</button>
 
-    <button type="submit">Login</button>
-
-    <div class="Link">@Html.ActionLink("Don't have an account? Sign up!", "Register", "Account")</div>
-}
+            <div class="Link">@Html.ActionLink("Don't have an account? Sign up!", "Register", "Account")</div>
+        }
+        </div>
+</section>
