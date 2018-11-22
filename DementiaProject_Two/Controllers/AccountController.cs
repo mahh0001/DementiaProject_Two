@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using DementiaProject_Two.Models;
+using DementiaProject_Two.Models.Account;
 
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

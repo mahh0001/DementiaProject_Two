@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DementiaProject_Two.DataContexts;
+using DementiaProject_Two.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -40,6 +41,9 @@ namespace DementiaProject_Two
                 options.Password.RequireLowercase = false;
                 options.Password.RequireDigit = false;
             });
+
+            
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
         }
 
