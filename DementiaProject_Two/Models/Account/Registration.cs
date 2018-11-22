@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DementiaProject_Two.Models
+namespace DementiaProject_Two.Models.Account
 {
     public class Registration
     {
