@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using DementiaProject_Two.Models;
+using DementiaProject_Two.Models.Account;
 
 namespace DementiaProject_Two.Controllers
 {
