@@ -33,12 +33,12 @@ namespace DementiaProject_Two
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseMvc();
+            
             app.UseStaticFiles();
+            app.UseMvc();
 
 
 
-           
         }
     }
 }
