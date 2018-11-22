@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using DementiaProject_Two.Models;
 
 namespace DementiaProject_Two.Controllers
 {
@@ -25,7 +27,7 @@ namespace DementiaProject_Two.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(Register user)
+        public async Task<IActionResult> Register(Registration user)
         {
             if (!ModelState.IsValid)
             {
@@ -34,8 +36,8 @@ namespace DementiaProject_Two.Controllers
 
             var newUser = new IdentityUser
             {
-                Email = user.EmailAddress,
-                UserName = user.EmailAddress
+                Email = user.Email,
+                UserName = user.Email
             };
 
             var result = await userManager.CreateAsync(newUser, user.Password);
@@ -63,7 +65,7 @@ namespace DementiaProject_Two.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var result = await signInManager.PasswordSignInAsync(user.EmailAddress, user.Password, false, lockoutOnFailure: false);
+                var result = await signInManager.PasswordSignInAsync(user.Email, user.Password, false, lockoutOnFailure: false);
 
                 if (result.Succeeded)
                 {
