@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DementiaProject_Two.Models
 {
-    public class Token
+    public class Tokens
     {
     }
 }
