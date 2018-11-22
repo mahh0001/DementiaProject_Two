@@ -1,8 +1,21 @@
-﻿@{
-    ViewData["Title"] = "Index";
+﻿@model DementiaProject_Two.Models.Login
+@{
+    ViewData["Title"] = "Log in";
 }
-
 <h2>Index</h2>
+@using (Html.BeginForm("Login", "Account"))
+{
+    @Html.ValidationSummary()
+    @Html.AntiForgeryToken()
 
-Du skal logge ind her 
+    @Html.LabelFor(m => m.Email)
+    @Html.TextBoxFor(m => m.Email)
 
+    @Html.LabelFor(m => m.Password)
+    @Html.PasswordFor(m => m.Password)
+    
+
+    <button type="submit">Login</button>
+
+    <div class="Link">@Html.ActionLink("Don't have an account? Sign up!", "Register", "Account")</div>
+}

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DementiaProject_Two.Models
 {
-    public class LoginModel
+    public class Login
     {
         [Required]
         [EmailAddress]
