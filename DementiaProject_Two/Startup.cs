@@ -45,6 +45,8 @@ namespace DementiaProject_Two
             
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
+            services.Configure<Tokens>(Configuration.GetSection("Tokens"));
+
         }
 
 

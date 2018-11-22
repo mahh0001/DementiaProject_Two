@@ -22,17 +22,17 @@ namespace DementiaProject_Two.Controllers
         private UserManager<IdentityUser> _userManager;
         private SignInManager<IdentityUser> _signInManager;
         private IPasswordHasher<IdentityUser> _hasher;
-        private IConfigurationRoot _config;
+        private readonly Tokens _tokens;
 
         public AccountController(UserManager<IdentityUser> userManager, 
                                  SignInManager<IdentityUser> signInManager, 
                                  IPasswordHasher<IdentityUser> hasher,
-                                 IConfigurationRoot config)
+                                 Tokens tokens)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _hasher = hasher;
-            _config = config;
+            _tokens = tokens;
         }
 
         [HttpGet]
@@ -125,13 +125,12 @@ namespace DementiaProject_Two.Controllers
                             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                         };
 
-                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
-                        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                        var creds = new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_tokens.Key)), SecurityAlgorithms.HmacSha256);
 
                         var token = new JwtSecurityToken
                         (
-                            issuer: _config["Tokens:Issuer"],
-                            audience: _config["Tokens:Audience"],
+                            issuer: _tokens.Issuer,
+                            audience: _tokens.Audience,
                             claims: claims,
                             expires: DateTime.UtcNow.AddMinutes(15),
                             signingCredentials: creds
