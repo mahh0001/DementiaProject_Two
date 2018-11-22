@@ -8,7 +8,7 @@ using DementiaProject_Two.Models;
 
 namespace DementiaProject_Two.Controllers
 {
-    [Route("[controller]")]
+    //[Route("[controller"])]
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> userManager;
@@ -92,11 +92,6 @@ namespace DementiaProject_Two.Controllers
             await signInManager.SignOutAsync();
 
             return RedirectToAction("Index", "Home");
-        }
-
-        public IActionResult Index()
-        {
-            return View();
         }
     }
 }
