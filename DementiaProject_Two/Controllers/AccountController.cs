@@ -6,18 +6,27 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using DementiaProject_Two.Models;
 
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Web.Http;
+
 namespace DementiaProject_Two.Controllers
 {
     //[Route("[controller"])]
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private IPasswordHasher<IdentityUser> _hasher;
 
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+
+        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IPasswordHasher<IdentityUser> hasher)
         {
-            this.userManager = userManager;
-            this.signInManager = signInManager;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _hasher = hasher;
         }
 
         [HttpGet]
@@ -40,7 +49,7 @@ namespace DementiaProject_Two.Controllers
                 UserName = user.Email
             };
 
-            var result = await userManager.CreateAsync(newUser, user.Password);
+            var result = await _userManager.CreateAsync(newUser, user.Password);
 
             if (result.Succeeded)
             {
@@ -65,10 +74,11 @@ namespace DementiaProject_Two.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var result = await signInManager.PasswordSignInAsync(user.Email, user.Password, false, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(user.Email, user.Password, false, lockoutOnFailure: false);
 
                 if (result.Succeeded)
                 {
+                    //GetToken(user); - FIX WHEN GETTOKEN IS DONE
                     if (Url.IsLocalUrl(returnUrl))
                     {
                         return Redirect(returnUrl);
@@ -89,9 +99,51 @@ namespace DementiaProject_Two.Controllers
 
         public async Task<IActionResult> Logout()
         {
-            await signInManager.SignOutAsync();
+            await _signInManager.SignOutAsync();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> GetToken(Login login)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(login.Email);
+                if (user != null)
+                {
+                    if (_hasher.VerifyHashedPassword(user, user.PasswordHash, login.Password) == PasswordVerificationResult.Success)
+                    {
+                        var claims = new[]
+                        {
+                            new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                        };
+
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("VERYLONGKEYVALUETHATISSECURE"));
+                        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+                        var token = new JwtSecurityToken
+                        (
+                            issuer: "https://localhost:44323",
+                            audience: "https://localhost:44323",
+                            claims: claims,
+                            expires: DateTime.UtcNow.AddMinutes(15),
+                            signingCredentials: creds
+                        );
+
+                        return Ok(new
+                        {
+                            token = new JwtSecurityTokenHandler().WriteToken(token),
+                            expiration = token.ValidTo
+                        });
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"Error: {e}");
+            }
+            return NotFound("Error: User not found");
         }
     }
 }
