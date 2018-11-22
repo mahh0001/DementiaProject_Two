@@ -57,6 +57,7 @@ namespace DementiaProject_Two
             }
             
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
