@@ -12,22 +12,27 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Web.Http;
+using Microsoft.Extensions.Configuration;
 
 namespace DementiaProject_Two.Controllers
 {
     //[Route("[controller"])]
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private UserManager<IdentityUser> _userManager;
+        private SignInManager<IdentityUser> _signInManager;
         private IPasswordHasher<IdentityUser> _hasher;
+        private IConfigurationRoot _config;
 
-
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IPasswordHasher<IdentityUser> hasher)
+        public AccountController(UserManager<IdentityUser> userManager, 
+                                 SignInManager<IdentityUser> signInManager, 
+                                 IPasswordHasher<IdentityUser> hasher,
+                                 IConfigurationRoot config)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _hasher = hasher;
+            _config = config;
         }
 
         [HttpGet]
