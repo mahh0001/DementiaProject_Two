@@ -43,10 +43,12 @@ namespace DementiaProject_Two
             }
             
             app.UseStaticFiles();
-            app.UseMvc();
-
-
-
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}");
+            });
         }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DementiaProject_Two.Controllers
 {
+    [Route("[controller]")]
     public class AccountController : Controller
     {
         public IActionResult Index()
