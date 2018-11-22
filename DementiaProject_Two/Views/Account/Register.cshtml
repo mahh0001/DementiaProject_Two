@@ -2,32 +2,33 @@
 @{
     ViewData["Title"] = "Register";
 }
+<section id="one">
+    <div class="inner">
+        @using (Html.BeginForm("Register", "Account"))
+        {
+            @Html.ValidationSummary()
 
-@using (Html.BeginForm("Register", "Account"))
-{
-    @Html.ValidationSummary()
+            <p>
+                @Html.LabelFor(x => x.Email)
+                @Html.EditorFor(x => x.Email)
+                @Html.ValidationMessageFor(x => x.Email)
+            </p>
 
-    <p>
-        @Html.LabelFor(x => x.Email)
-        @Html.EditorFor(x => x.Email)
-        @Html.ValidationMessageFor(x => x.Email)
-    </p>
+            <p>
+                @Html.LabelFor(x => x.Password)
+                @Html.EditorFor(x => x.Password)
+                @Html.ValidationMessageFor(x => x.Password)
+            </p>
 
-    <p>
-        @Html.LabelFor(x => x.Password)
-        @Html.EditorFor(x => x.Password)
-        @Html.ValidationMessageFor(x => x.Password)
-    </p>
+            <p>
+                @Html.LabelFor(x => x.RepeatPassword)
+                @Html.EditorFor(x => x.RepeatPassword)
+                @Html.ValidationMessageFor(x => x.RepeatPassword)
+            </p>
 
-    <p>
-        @Html.LabelFor(x => x.RepeatPassword)
-        @Html.EditorFor(x => x.RepeatPassword)
-        @Html.ValidationMessageFor(x => x.RepeatPassword)
-    </p>
-
-    <p>
-        <button type="submit">Register</button>
-    </p>
-}
-
-
+            <p>
+                <button type="submit">Register</button>
+            </p>
+        }
+        </div>
+    </section>
