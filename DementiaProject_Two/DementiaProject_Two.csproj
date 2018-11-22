@@ -9,9 +9,6 @@
   <ItemGroup>
     <Folder Include="wwwroot\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Views\Shared\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
 
@@ -19,6 +16,7 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.1916590" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>
 
 </Project>

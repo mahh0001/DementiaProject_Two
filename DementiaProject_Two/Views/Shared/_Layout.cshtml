@@ -1,4 +1,6 @@
-﻿<html>
+﻿@addTagHelper  "*,Microsoft.AspNetCore.Mvc.TagHelpers"
+
+<html>
 <head>
     <title>@ViewBag.Title</title>
     <meta charset="utf-8" />
@@ -9,29 +11,26 @@
     <!-- Header -->
     <header id="header">
         <div class="inner">
-            <a href="#" class="logo">introspect</a>
+            <a asp-controller="Home" asp-action="Index" class="logo">GoGoTrainMore</a>
             <nav id="nav">
-                <a href="#">Home</a>
-                <a href="#">Generic</a>
+                <a asp-controller="Home" asp-action="Index">Home</a>
                 <a href="#">Elements</a>
+                <a asp-controller="Account" asp-action="Index">Login/Signup</a>
             </nav>
         </div>
     </header>
     <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
     @RenderBody()
-     <section id="footer">
-                <div class="inner">
-                    <div class="copyright">
-                        &copy; Untitled Design: <a href="https://templated.co/">TEMPLATED</a>. Images <a href="https://unsplash.com/">Unsplash</a>
-                    </div>
-                </div>
-            </section>
-
-
-            <script src="assets/js/jquery.min.js"></script>
-            <script src="assets/js/skel.min.js"></script>
-            <script src="assets/js/util.js"></script>
-            <script src="assets/js/main.js"></script>
-
-    </body>
+    <section id="footer">
+        <div class="inner">
+            <div class="copyright">
+                &copy; Untitled Design: <a href="https://templated.co/">TEMPLATED</a>. Images <a href="https://unsplash.com/">Unsplash</a>
+            </div>
+        </div>
+    </section>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
 </html>
