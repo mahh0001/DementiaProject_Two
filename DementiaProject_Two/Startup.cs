@@ -15,7 +15,9 @@ namespace DementiaProject_Two
     {
         public Startup(IHostingEnvironment env)
         {
-            Configuration = new ConfigurationBuilder().AddEnvironmentVariables().Build();
+            Configuration = new ConfigurationBuilder().AddEnvironmentVariables().
+                                                       AddJsonFile(env.ContentRootPath + "/appsettings.json").
+                                                       Build();
         }
         public IConfiguration Configuration { get; private set; }
         // This method gets called by the runtime. Use this method to add services to the container.
