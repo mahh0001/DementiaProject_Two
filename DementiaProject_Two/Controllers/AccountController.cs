@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using DementiaProject_Two.Models;
 using DementiaProject_Two.Models.Account;
-
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using System.Web.Http;
-using Microsoft.Extensions.Configuration;
 
 namespace DementiaProject_Two.Controllers
 {
@@ -22,7 +17,7 @@ namespace DementiaProject_Two.Controllers
         private UserManager<IdentityUser> _userManager;
         private SignInManager<IdentityUser> _signInManager;
         private IPasswordHasher<IdentityUser> _hasher;
-        private readonly Tokens _tokens;
+        private Tokens _tokens;
 
         public AccountController(UserManager<IdentityUser> userManager, 
                                  SignInManager<IdentityUser> signInManager, 
