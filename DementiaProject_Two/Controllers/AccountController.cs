@@ -8,6 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.Extensions.Options;
 
 namespace DementiaProject_Two.Controllers
 {
@@ -22,12 +23,12 @@ namespace DementiaProject_Two.Controllers
         public AccountController(UserManager<IdentityUser> userManager, 
                                  SignInManager<IdentityUser> signInManager, 
                                  IPasswordHasher<IdentityUser> hasher,
-                                 Tokens tokens)
+                                 IOptions<Tokens> tokens)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _hasher = hasher;
-            _tokens = tokens;
+            _tokens = tokens.Value;
         }
 
         [HttpGet]
