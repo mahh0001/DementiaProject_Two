@@ -17,5 +17,20 @@ namespace MatchmakingService.DataContext
             SaveChanges();
         }
         public DbSet<UserInfo> UserInfos { get; set; }
+        public DbSet<Activity> Activities { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ActivityUser>().HasKey(bc => new { bc.ActivityId, bc.UserInfoId });
+
+            modelBuilder.Entity<ActivityUser>()
+                .HasOne(bc => bc.Activity)
+                .WithMany(b => b.Users)
+                .HasForeignKey(bc => bc.UserInfoId);
+            modelBuilder.Entity<ActivityUser>()
+                .HasOne(bc => bc.UserInfo)
+                .WithMany(b => b.Activities)
+                .HasForeignKey(bc => bc.ActivityId);
+        }
+
     }
 }
