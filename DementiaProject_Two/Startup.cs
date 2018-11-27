@@ -32,6 +32,9 @@ namespace DementiaProject_Two
         {    
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.Configure<Tokens>(Configuration.GetSection("Tokens"));
+
             services.AddDbContext<IdentityContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
 
@@ -47,16 +50,8 @@ namespace DementiaProject_Two
                 options.Password.RequireLowercase = false;
                 options.Password.RequireDigit = false;
             });
-
-            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-
-            var tokensSection = Configuration.GetSection("Tokens");
-            services.Configure<Tokens>(tokensSection);
-
-            var tokens = tokensSection.Get<Tokens>();
-            var key = Encoding.ASCII.GetBytes(tokens.Key);
-
-            services.Configure<Tokens>(Configuration.GetSection("Tokens"));
+            
+            var key = Encoding.ASCII.GetBytes(Configuration.GetSection("Tokens").Get<Tokens>().Key);
 
             services.AddAuthentication(x =>
             {
