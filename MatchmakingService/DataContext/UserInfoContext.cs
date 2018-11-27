@@ -20,16 +20,18 @@ namespace MatchmakingService.DataContext
         public DbSet<Activity> Activities { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ActivityUser>().HasKey(bc => new { bc.ActivityId, bc.UserInfoId });
-
+            // Model is used to define a many to many relation in EF Core
+            // Bridging tabel ActivityUser
             modelBuilder.Entity<ActivityUser>()
-                .HasOne(bc => bc.Activity)
-                .WithMany(b => b.Users)
-                .HasForeignKey(bc => bc.UserInfoId);
+                .HasKey(activityUser => new { activityUser.ActivityId, activityUser.UserInfoId });
             modelBuilder.Entity<ActivityUser>()
-                .HasOne(bc => bc.UserInfo)
-                .WithMany(b => b.Activities)
-                .HasForeignKey(bc => bc.ActivityId);
+                .HasOne(activityUser => activityUser.Activity)
+                .WithMany(activity => activity.ActivityUsers)
+                .HasForeignKey(actirityUser => actirityUser.UserInfoId);
+            modelBuilder.Entity<ActivityUser>()
+                .HasOne(activityUser => activityUser.UserInfo)
+                .WithMany(userInfo => userInfo.ActivityUsers)
+                .HasForeignKey(activityUser => activityUser.ActivityId);
         }
 
     }

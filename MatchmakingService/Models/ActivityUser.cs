@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace MatchmakingService.Models
 {
+    // Model is used to define a many to many relation in EF Core
     public class ActivityUser
     {
         public long UserInfoId { get; set; }

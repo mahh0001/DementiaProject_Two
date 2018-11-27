@@ -12,6 +12,6 @@ namespace MatchmakingService.Models
         public Guid Id { get; set; }
         public string ActivityName { get; set; }
         public string Description { get; set; }
-        public List<ActivityUser> Users { get; set; }
+        public List<ActivityUser> ActivityUsers { get; set; }
     }
 }
