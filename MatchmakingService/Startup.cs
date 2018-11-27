@@ -32,6 +32,10 @@ namespace MatchmakingService
 
             services.AddTransient<IUserInfoRepository, UserInfoRepository>();
             services.AddDbContext<UserInfoContext>(options => options.UseInMemoryDatabase("Foo"));
+            
+            // Adding the context to the container with a connection string to an actual database.
+            //services.AddDbContext<UserInfoContext>
+            //    (options => options.UseSqlServer(Configuration.GetConnectionString("MatchmakingConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
