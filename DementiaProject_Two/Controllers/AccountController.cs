@@ -9,6 +9,7 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DementiaProject_Two.Controllers
 {
@@ -106,7 +107,15 @@ namespace DementiaProject_Two.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public async Task<IActionResult> GetToken(Login login)
+        [Route("ok")]
+        [Authorize]
+        public IActionResult returnOk()
+        {
+            return Ok();
+        }
+
+        [HttpPost("api")]
+        public async Task<IActionResult> GetToken([FromBody] Login login)
         {
             try
             {
@@ -128,7 +137,7 @@ namespace DementiaProject_Two.Controllers
                             issuer: _tokens.Issuer,
                             audience: _tokens.Audience,
                             claims: claims,
-                            expires: DateTime.UtcNow.AddMinutes(15),
+                            expires: DateTime.UtcNow.AddDays(60),
                             signingCredentials: creds
                         );
 
