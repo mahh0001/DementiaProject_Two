@@ -3740,14 +3740,26 @@
 
 		}
 
-/* Footer */
 
-	#footer {
-		background-color: #e5474b;
-		color: #f2a3a5;
-		padding: 4em 0 2em 0;
-		background: #e5474b;
-	}
+        /* Added CSS for the matchmaking service*/
+#userviewimg{
+    border-radius: 50%;
+    height: 300px;
+    width:300px;
+}
+
+
+
+
+
+
+/* Footer */
+#footer {
+    background-color: #e5474b;
+    color: #f2a3a5;
+    padding: 4em 0 2em 0;
+    background: #e5474b;
+}
 
 		#footer input, #footer select, #footer textarea {
 			color: #ffffff;
