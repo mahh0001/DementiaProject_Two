@@ -1,7 +1,10 @@
-﻿namespace MatchmakingService.Services.Repositories
+﻿using MatchmakingService.Models;
+using System;
+
+namespace MatchmakingService.Services.Repositories
 {
-    internal interface IUserInfoRepository
+    public interface IUserInfoRepository : IRepository<UserInfo>
     {
-        
+        UserInfo GetInfoWithGuid(Guid id);
     }
 }

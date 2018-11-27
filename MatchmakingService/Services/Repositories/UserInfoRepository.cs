@@ -20,5 +20,10 @@ namespace MatchmakingService.Services.Repositories
                 return base.Context as UserInfoContext;
             }
         }
+
+        public UserInfo GetInfoWithGuid(Guid id)
+        {
+            return UserInfoContext.UserInfos.FirstOrDefault(x => x.IdentityFK == id);
+        }
     }
 }
