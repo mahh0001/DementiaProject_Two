@@ -17,5 +17,6 @@ namespace MatchmakingService.DataContext
             SaveChanges();
         }
         public DbSet<UserInfo> UserInfos { get; set; }
+        public DbSet<Activity> Activities { get; set; }
     }
 }
