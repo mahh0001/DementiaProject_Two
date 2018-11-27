@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DementiaProject_Two", "Deme
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6A677C65-A12B-4393-BF84-C77A622D3228}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEnv", "TestEnv\TestEnv.csproj", "{79E85A53-6972-4B58-A1E6-C3DD1D7CBBCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestEnv", "TestEnv\TestEnv.csproj", "{79E85A53-6972-4B58-A1E6-C3DD1D7CBBCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchmakingService", "MatchmakingService\MatchmakingService.csproj", "{1E889071-1C31-400D-B90F-505F5E953AA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{79E85A53-6972-4B58-A1E6-C3DD1D7CBBCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79E85A53-6972-4B58-A1E6-C3DD1D7CBBCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79E85A53-6972-4B58-A1E6-C3DD1D7CBBCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E889071-1C31-400D-B90F-505F5E953AA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E889071-1C31-400D-B90F-505F5E953AA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E889071-1C31-400D-B90F-505F5E953AA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E889071-1C31-400D-B90F-505F5E953AA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
