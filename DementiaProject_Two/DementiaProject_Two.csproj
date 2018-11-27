@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Match\Shared\" />
     <Folder Include="wwwroot\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
