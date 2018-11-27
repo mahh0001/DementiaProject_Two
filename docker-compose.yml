@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  apigateway:
+    image: ${DOCKER_REGISTRY}apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+
+  dementiaproject_two:
+    image: ${DOCKER_REGISTRY}dementiaprojecttwo
+    build:
+      context: .
+      dockerfile: DementiaProject_Two/Dockerfile
+
+
+  matchmakingservice:
+    image: ${DOCKER_REGISTRY}matchmakingservice
+    build:
+      context: .
+      dockerfile: MatchmakingService/Dockerfile
+

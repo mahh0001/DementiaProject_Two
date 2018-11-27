@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestEnv", "TestEnv\TestEnv.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatchmakingService", "MatchmakingService\MatchmakingService.csproj", "{1E889071-1C31-400D-B90F-505F5E953AA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{669D5974-6B96-48F7-A394-5EFC26904271}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{669D5974-6B96-48F7-A394-5EFC26904271}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1C5354AF-412A-4289-88D9-FABD468AD009}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{669D5974-6B96-48F7-A394-5EFC26904271}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{669D5974-6B96-48F7-A394-5EFC26904271}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{669D5974-6B96-48F7-A394-5EFC26904271}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C5354AF-412A-4289-88D9-FABD468AD009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C5354AF-412A-4289-88D9-FABD468AD009}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C5354AF-412A-4289-88D9-FABD468AD009}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C5354AF-412A-4289-88D9-FABD468AD009}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
