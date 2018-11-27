@@ -12,14 +12,14 @@
             <a asp-controller="Home" asp-action="Index" class="logo">GoGoTrainMore</a>
             <nav id="nav">
                 <a asp-controller="Home" asp-action="Index">Home</a>
-                <a href="#">Elements</a>
+                <a asp-controller="Match" asp-action="Index">Find kærligheden</a>
+                <a asp-controller="Profile" asp-action="Index">Profil</a>
                 @if (User.Identity.IsAuthenticated)
                 {
                     <a asp-controller="Account" asp-action="Logout">Logout</a>
                 }
                 else
                 {
-                    <a asp-controller="Home" asp-action="Match">Find kærligheden</a>
                     <a asp-controller="Account" asp-action="Login">Login</a>
                     <a asp-controller="Account" asp-action="Register">Register</a>
 
