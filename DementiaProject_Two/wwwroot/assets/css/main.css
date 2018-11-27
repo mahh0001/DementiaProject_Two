@@ -2110,6 +2110,7 @@
 		position: relative;
 	}
 
+
 		.select-wrapper:before {
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
@@ -3746,6 +3747,10 @@
     border-radius: 50%;
     height: 300px;
     width:300px;
+}
+
+.matchbuttons{
+    margin-left: 10%;
 }
 
 
