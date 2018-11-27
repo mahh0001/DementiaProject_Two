@@ -16,5 +16,7 @@ namespace MatchmakingService.Models
         public int ZipCode { get; set; }
         public string Gender { get; set; }
         public byte[] Picture { get; set; }
+        //Fremmednøgle til Identity
+        public Guid IdentityFK { get; set; }
     }
 }
