@@ -1,6 +1,6 @@
 ﻿namespace MatchmakingService.Services
 {
-    public interface IUserInfoRepository
+    public interface IRepository
     {
     }
 }

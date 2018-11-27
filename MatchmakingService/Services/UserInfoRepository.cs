@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MatchmakingService.Services
 {
-    public class UserInfoRepository : IUserInfoRepository
+    public class UserInfoRepository : IRepository
     {
 
     }
