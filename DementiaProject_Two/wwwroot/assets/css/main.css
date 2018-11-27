@@ -3747,9 +3747,7 @@
     height: 300px;
     width:300px;
 }
-.matchbuttons{
-    align-content:center;
-}
+
 
 
 .rate {
@@ -3765,7 +3763,7 @@
     .rate:nth-child(1) {
         margin-left: 4px;
         background: url(http://web.arjentienkamp.com/codepen/tinder/delete.png);
-        background-size: 25px;
+        background-size: 50px;
         background-position: center;
         background-repeat: no-repeat;
     }
@@ -3774,7 +3772,7 @@
     .rate:nth-child(3) {
         margin-left: -4px;
         background: url(http://web.arjentienkamp.com/codepen/tinder/heart.png);
-        background-size: 25px;
+        background-size: 50px;
         background-position: center;
         background-repeat: no-repeat;
     }
