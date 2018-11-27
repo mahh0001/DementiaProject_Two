@@ -13,5 +13,12 @@ namespace MatchmakingService.Services.Repositories
         {
 
         }
+        public UserInfoContext UserInfoContext
+        {
+            get
+            {
+                return base.Context as UserInfoContext;
+            }
+        }
     }
 }
