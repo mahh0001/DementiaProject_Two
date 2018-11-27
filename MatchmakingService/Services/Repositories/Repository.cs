@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace MatchmakingService.Repositories
+namespace MatchmakingService.Services.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
@@ -48,16 +48,5 @@ namespace MatchmakingService.Repositories
         {
             Context.Set<TEntity>().RemoveRange(entities);
         }
-    }
-
-    public interface IRepository<TEntity> where TEntity : class
-    {
-        TEntity Get(long id);
-        IEnumerable<TEntity> GetAll();
-        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
-        void Add(TEntity entity);
-        void AddRange(IEnumerable<TEntity> entities);
-        void Remove(TEntity entity);
-        void RemoveRange(IEnumerable<TEntity> entities);
     }
 }
