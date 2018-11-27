@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DementiaProject_Two", "DementiaProject_Two\DementiaProject_Two.csproj", "{CD808114-5136-42E6-A154-2F4AA6B1C5C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DementiaProject_Two", "DementiaProject_Two\DementiaProject_Two.csproj", "{CD808114-5136-42E6-A154-2F4AA6B1C5C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6A677C65-A12B-4393-BF84-C77A622D3228}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEnv", "TestEnv\TestEnv.csproj", "{79E85A53-6972-4B58-A1E6-C3DD1D7CBBCF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{CD808114-5136-42E6-A154-2F4AA6B1C5C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD808114-5136-42E6-A154-2F4AA6B1C5C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD808114-5136-42E6-A154-2F4AA6B1C5C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79E85A53-6972-4B58-A1E6-C3DD1D7CBBCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79E85A53-6972-4B58-A1E6-C3DD1D7CBBCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79E85A53-6972-4B58-A1E6-C3DD1D7CBBCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79E85A53-6972-4B58-A1E6-C3DD1D7CBBCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{79E85A53-6972-4B58-A1E6-C3DD1D7CBBCF} = {6A677C65-A12B-4393-BF84-C77A622D3228}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E676F5D7-004D-461A-A8B3-215A7083051C}
