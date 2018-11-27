@@ -10,10 +10,11 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authorization;
+using MatchmakingService.Models;
 
 namespace DementiaProject_Two.Controllers
 {
-    //[Route("[controller"])]
+    [Route("[controller]")]
     public class AccountController : Controller
     {
         private UserManager<IdentityUser> _userManager;
@@ -56,7 +57,7 @@ namespace DementiaProject_Two.Controllers
 
             if (result.Succeeded)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("UserInformation", "Account");
             }
             else
             {
@@ -107,13 +108,6 @@ namespace DementiaProject_Two.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [Route("ok")]
-        [Authorize]
-        public IActionResult returnOk()
-        {
-            return Ok();
-        }
-
         [HttpPost("api")]
         public async Task<IActionResult> GetToken([FromBody] Login login)
         {
@@ -154,6 +148,44 @@ namespace DementiaProject_Two.Controllers
                 return BadRequest($"Error: {e}");
             }
             return NotFound("Error: User not found");
+        }
+
+        [Route("user")]
+        public IActionResult UserInformation()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult UserInformation(UserInfo userInfo)
+        {
+            if (userInfo == null)
+            {
+                return BadRequest("You must fill out the required information");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(userInfo);
+            }
+
+            var newUserInfo = new UserInfo()
+            {
+                Id = userInfo.Id,
+                FirstName = userInfo.FirstName,
+                LastName = userInfo.LastName,
+                Picture = userInfo.Picture,
+                ZipCode = userInfo.ZipCode,
+                Gender = userInfo.Gender,
+                Age = userInfo.Age,
+            };
+
+            
+
+            if (true)
+            {
+
+            }
+            return RedirectToAction("Login", "Account");
         }
     }
 }
