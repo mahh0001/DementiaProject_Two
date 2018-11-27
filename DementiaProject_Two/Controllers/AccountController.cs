@@ -10,7 +10,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authorization;
-using MatchmakingService.Models;
 
 namespace DementiaProject_Two.Controllers
 {
