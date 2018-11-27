@@ -18,5 +18,6 @@ namespace MatchmakingService.Models
         public byte[] Picture { get; set; }
         //Fremmednøgle til Identity
         public Guid IdentityFK { get; set; }
+        public virtual List<Activity> Activities { get; set; }
     }
 }
