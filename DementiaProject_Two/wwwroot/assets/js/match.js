@@ -1,7 +1,5 @@
 ﻿const likeButton = document.querySelector('#swipe_like')
 const dislikeButton = document.querySelector('#swipe_dislike')
-const profileImg = document.querySelector('#userviewimg')
-var counter = 0;
 
 
 function showNextProfile() {
