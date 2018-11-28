@@ -32,7 +32,7 @@ namespace DementiaProject_Two.Controllers
             _tokens = tokens.Value;
         }
 
-        [HttpGet]
+        [HttpGet("register")]
         public IActionResult Register()
         {
             return View();
@@ -65,7 +65,7 @@ namespace DementiaProject_Two.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("login")]
         public IActionResult Login()
         {
             return View();
