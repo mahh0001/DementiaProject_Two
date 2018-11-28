@@ -3749,8 +3749,10 @@
     width:300px;
 }
 
-.matchbuttons{
+.matchbuttons {
+    margin-top: 5%;
     margin-left: 10%;
+    position: inherit;
 }
 
 .userInfoContainer ul {
