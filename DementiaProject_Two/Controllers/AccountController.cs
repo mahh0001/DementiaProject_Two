@@ -156,26 +156,26 @@ namespace DementiaProject_Two.Controllers
         }
 
         [HttpPost]
-        public IActionResult UserInformation(UserInfo userInfo)
+        public IActionResult UserInformation(UserInfoViewModel userInfoViewModel)
         {
-            if (userInfo == null)
+            if (userInfoViewModel == null)
             {
                 return BadRequest("You must fill out the required information");
             }
             if (!ModelState.IsValid)
             {
-                return View(userInfo);
+                return View(userInfoViewModel);
             }
 
-            var newUserInfo = new UserInfo()
+            var newUserInfo = new UserInfoViewModel()
             {
-                Id = userInfo.Id,
-                FirstName = userInfo.FirstName,
-                LastName = userInfo.LastName,
-                Picture = userInfo.Picture,
-                ZipCode = userInfo.ZipCode,
-                Gender = userInfo.Gender,
-                Age = userInfo.Age,
+                Id = userInfoViewModel.Id,
+                FirstName = userInfoViewModel.FirstName,
+                LastName = userInfoViewModel.LastName,
+                Picture = userInfoViewModel.Picture,
+                ZipCode = userInfoViewModel.ZipCode,
+                Gender = userInfoViewModel.Gender,
+                Age = userInfoViewModel.Age,
             };
 
             

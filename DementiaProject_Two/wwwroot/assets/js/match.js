@@ -4,10 +4,17 @@ const profileImg = document.querySelector('#userviewimg')
 var counter = 0;
 
 function showNextProfile() {
-    // Skift af billede kun til test, indtil vi får indlæst de rigtige billeder
-    if (counter >= 9) counter = 0;
-    counter++
-    profileImg.src = "/images/pic0"+counter+".jpg"
+    $.ajax({
+        url: '/match/next',
+        type: 'GET',
+        dataType: 'html',
+        success: function (data) {
+            $('.userViewContainer').html(data);
+        }, 
+        error: function(errorData) {
+            console.log(errorData)
+        }
+    });
 }
 
 

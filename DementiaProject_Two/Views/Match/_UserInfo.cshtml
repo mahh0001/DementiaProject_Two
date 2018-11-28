@@ -1,0 +1,17 @@
+﻿@model DementiaProject_Two.Models.UserInfoViewModel
+<span class="image left">
+    <img id="userviewimg" src="@string.Format($"/images/pic0{Model.Id}.jpg")" alt="" />
+</span>
+<div class="userInfoContainer">
+    <p><b>Navn:</b> @string.Format($"{Model.FirstName} {Model.LastName}")</p>
+    <p><b>Alder</b> @Model.Age</p>
+    <p><b>Køn</b> @Model.Gender</p>
+    <b>Kan godt lide:</b>
+    <ul>
+        @foreach (var activity in Model.PreferedActivities.Take(3))
+        {
+            <li>@activity</li>
+        }
+    </ul>
+
+</div>

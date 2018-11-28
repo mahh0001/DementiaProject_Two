@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DementiaProject_Two.Models
 {
-    public class UserInfo
+    // Denne implementering er kun til at teste viewet
+    public class UserInfoViewModel
     {
         [Key]
         public long Id { get; set; }
@@ -16,6 +17,7 @@ namespace DementiaProject_Two.Models
         public int ZipCode { get; set; }
         public string Gender { get; set; }
         public byte[] Picture { get; set; }
+        public List<string> PreferedActivities { get; set; }
         //Fremmednøgle til Identity
         public Guid IdentityFK { get; set; }
     }
