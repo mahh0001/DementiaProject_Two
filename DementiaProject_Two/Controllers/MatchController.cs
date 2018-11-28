@@ -29,7 +29,7 @@ namespace DementiaProject_Two.Controllers
                 new UserInfoViewModel {Age = 21, FirstName = "Daniel", LastName = "Stuhr", Gender = "Male", ZipCode = 5000, Id = 05, PreferedActivities = new List<string>(){"Løb", "Badminton"} }
 
             };
-            return PartialView("_UserInfo", users.ElementAt(new Random().Next(0, users.Count-1)));
+            return PartialView("_UserInfo", users.ElementAt(new Random().Next(0, users.Count)));
         }
 
     }
