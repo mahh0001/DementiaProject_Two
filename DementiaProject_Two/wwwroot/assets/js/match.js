@@ -3,6 +3,7 @@ const dislikeButton = document.querySelector('#swipe_dislike')
 const profileImg = document.querySelector('#userviewimg')
 var counter = 0;
 
+
 function showNextProfile() {
     $.ajax({
         url: '/match/next',
@@ -17,7 +18,9 @@ function showNextProfile() {
     });
 }
 
-
+window.onload = function () {
+    showNextProfile()
+}
 likeButton.addEventListener('click', () => {
     showNextProfile()
 console.log('Du trykkede like')
