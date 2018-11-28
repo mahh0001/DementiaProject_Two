@@ -1,4 +1,4 @@
-@import url(font-awesome.min.css);
+﻿@import url(font-awesome.min.css);
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400,700|Pacifico");
 
 /*
@@ -3753,6 +3753,13 @@
     margin-left: 10%;
 }
 
+.userInfoContainer ul {
+    list-style: none;
+}
+
+.userInfoContainer ul li:before {
+    content: '✓';
+}
 
 
 .rate {
