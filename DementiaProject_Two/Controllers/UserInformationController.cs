@@ -45,7 +45,15 @@ namespace DementiaProject_Two.Controllers
             context.UserInformations.Add(userInfo);
             context.SaveChanges();
 
-            return View();
+
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                return Ok();
+            }
         }
     }
 }

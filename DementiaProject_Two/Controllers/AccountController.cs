@@ -64,13 +64,13 @@ namespace DementiaProject_Two.Controllers
             }
         }
 
-        [HttpGet("login")]
+        [HttpGet("Login")]
         public IActionResult Login()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login(Login user, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
