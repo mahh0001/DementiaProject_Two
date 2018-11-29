@@ -30,10 +30,11 @@ namespace MatchmakingService.Services.Repositories
             UserInfo otherUser = null;
             UserMatch potentialMatch = null;
 
-            UserInfo[] potentialMatchUsers = MatchmakingContext.UserInfos.ToArray();
-            UserMatch[] alreadyMatched = user.Matches.ToArray();
+            List<UserInfo> potentialMatchUsers = MatchmakingContext.UserInfos.ToList();
+            potentialMatchUsers.Remove(user);
 
-            List<UserMatch> potentialMatches = MatchmakingHelpers.RemoveMatchDuplicates(potentialMatchUsers, alreadyMatched).ToList();
+            // this list will contain the user itself, handle that in the looooop
+            List<UserMatch> potentialMatches = MatchmakingHelpers.RemoveMatchDuplicates(potentialMatchUsers, user.Matches).ToList();
             
 
             int numOfUsers = potentialMatches.Count();
