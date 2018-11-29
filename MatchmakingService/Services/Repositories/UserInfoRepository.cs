@@ -9,15 +9,15 @@ namespace MatchmakingService.Services.Repositories
 {
     public class UserInfoRepository : Repository<UserInfo>, IUserInfoRepository
     {
-        public UserInfoRepository(UserInfoContext userInfoContext) : base(userInfoContext)
+        public UserInfoRepository(MatchmakingContext userInfoContext) : base(userInfoContext)
         {
 
         }
-        public UserInfoContext UserInfoContext
+        public MatchmakingContext UserInfoContext
         {
             get
             {
-                return base.Context as UserInfoContext;
+                return base.Context as MatchmakingContext;
             }
         }
 

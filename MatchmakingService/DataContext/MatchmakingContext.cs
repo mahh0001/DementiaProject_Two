@@ -4,9 +4,9 @@ using System;
 
 namespace MatchmakingService.DataContext
 {
-    public class UserInfoContext : DbContext
+    public class MatchmakingContext : DbContext
     {
-        public UserInfoContext(DbContextOptions<UserInfoContext> options) : base(options)
+        public MatchmakingContext(DbContextOptions<MatchmakingContext> options) : base(options)
         {
             Database.EnsureCreated();
             UserInfos.Add(new UserInfo { Age = 20, FirstName = "Daniel", LastName = "Stuhr", Gender = "Male", ZipCode = 5000, IdentityFK = Guid.Parse("9c10943b-b408-4200-b3a2-6fa2a5d96df8") });
