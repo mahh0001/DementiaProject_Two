@@ -35,7 +35,7 @@ namespace MatchmakingService.Services.Repositories
 
             // this list will contain the user itself, handle that in the looooop
             List<UserMatch> potentialMatches = MatchmakingHelpers.RemoveMatchDuplicates(potentialMatchUsers, user.Matches).ToList();
-            
+
 
             int numOfUsers = potentialMatches.Count();
 
@@ -43,14 +43,14 @@ namespace MatchmakingService.Services.Repositories
             {
                 // Redo all below here. Go over code!
                 otherUser = MatchmakingContext.UserInfos.ElementAt(i);
-                if(otherUser.IdentityFK == userId)
+                if (otherUser.IdentityFK == userId)
                 {
                     i++;
                     otherUser = MatchmakingContext.UserInfos.ElementAt(i);
                 }
 
-                
 
+                
                 //potentialMatch = MatchmakingContext.Matches[i]
                 //potentialMatch = MatchmakingContext.Matches.FirstOrDefault(x => ((x.User2Id == otherUser.IdentityFK &&
                 //                                                    x.User1Id == u1Id &&
@@ -65,7 +65,10 @@ namespace MatchmakingService.Services.Repositories
                     return potentialMatch;
                 }
             }
+            return null;
         }
+    }
+}
 
         //    public UserMatch GetMatch(Guid u1Id)
         //    {
@@ -94,4 +97,3 @@ namespace MatchmakingService.Services.Repositories
         //        return new UserMatch();
         //    }
         //}
-    }

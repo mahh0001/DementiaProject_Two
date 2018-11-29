@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DementiaProject_Two.Migrations.UserInformation
+namespace DementiaProject_Two.Migrations
 {
     [DbContext(typeof(UserInformationContext))]
-    [Migration("20181129103213_UserInformation")]
+    [Migration("20181129123441_UserInformation")]
     partial class UserInformation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace DementiaProject_Two.Migrations.UserInformation
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DementiaProject_Two.Models.Account.UserInformation", b =>
+            modelBuilder.Entity("DementiaProject_Two.Models.Account.UserInformationModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

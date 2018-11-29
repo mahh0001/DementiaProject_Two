@@ -17,7 +17,7 @@ namespace MatchmakingService.Controllers
         }
 
 
-        public IActionResult CheckIf
+        public IActionResult CheckIf;
 
         public IActionResult RegisterUserChoice()
         {
