@@ -1,6 +1,7 @@
 ﻿using DementiaProject_Two.DataContexts;
 using DementiaProject_Two.Models.Account;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,13 @@ namespace DementiaProject_Two.Repositories
         public UserInformationModel Get(int id)
         {
             return context.UserInformations.FirstOrDefault(x => x.Id == id);
+        }
+
+        public UserInformationModel Update(UserInformationModel userInfo)
+        {
+            context.Attach(userInfo).State = EntityState.Modified;
+            context.SaveChanges();
+            return userInfo;
         }
     }
 }
