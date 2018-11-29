@@ -86,7 +86,7 @@ namespace DementiaProject_Two
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}");
+                    template: "{controller=Home}/{action=Index}/{int?}");
             });
         }
     }

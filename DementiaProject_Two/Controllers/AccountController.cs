@@ -178,12 +178,6 @@ namespace DementiaProject_Two.Controllers
                 Age = userInfoViewModel.Age,
             };
 
-            
-
-            if (true)
-            {
-
-            }
             return RedirectToAction("Login", "Account");
         }
     }
