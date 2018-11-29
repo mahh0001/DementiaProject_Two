@@ -1,17 +1,19 @@
 ﻿@model DementiaProject_Two.Models.Account.UserInformationModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "EditProfil";
 }
 
-<h4>Type in your information</h4>
+<h2>Edit your profil</h2>
+
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form method="post" enctype="multipart/form-data" >
+    <div class="col-md-6">
+        <form asp-action="EditProfil">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="@Model.FirstName" class="control-label"></label>
+                <label asp-for="FirstName" class="control-label"></label>
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
@@ -37,12 +39,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="Picture" class="control-label"></label>
-                <input type="file" id="files" asp-for="Picture" />
-                <img width="150" height="150" src="data:image/png;base64,@ViewData["Picture"]" style="border-radius:50%" />﻿
+                <input asp-for="Picture" class="form-control" />
                 <span asp-validation-for="Picture" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>
     </div>
