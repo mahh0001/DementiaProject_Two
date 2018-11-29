@@ -3,43 +3,45 @@ using DementiaProject_Two.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace DementiaProject_Two.Pages
+namespace DementiaProject_Two.Controllers
 {
     public class EditController : Controller
     {
         private IRepository repo;
 
-        [BindProperty]
         public UserInformationModel UserInfo { get; set; }
 
         public EditController(IRepository repo)
         {
             this.repo = repo;
         }
-        public IActionResult EditProfil(UserInformationModel userModel)
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult EditProfil(UserInformationModel userModel)
         {
             UserInfo = repo.Get(userModel.Id);
             if (UserInfo == null)
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
-            {
-                return View();
-            }
+            return View();
         }
 
-        public IActionResult OnPost()
-        {
-            if (ModelState.IsValid)
-            {
-                repo.Update(UserInfo);
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                return View();
-            }
-        }
+        //public IActionResult OnPost()
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        repo.Update(UserInfo);
+        //        return RedirectToAction("Index", "Home");
+        //    }
+        //    else
+        //    {
+        //        return View();
+        //    }
+        //}
     }
 }

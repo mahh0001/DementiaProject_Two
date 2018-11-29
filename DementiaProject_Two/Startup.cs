@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DementiaProject_Two.DataContexts;
 using DementiaProject_Two.Models;
+using DementiaProject_Two.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +36,8 @@ namespace DementiaProject_Two
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.Configure<Tokens>(Configuration.GetSection("Tokens"));
 
+            services.AddScoped<IRepository, UserInfoRepository>();
+
 
             services.AddDbContext<UserInformationContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("UserInfoConnection")));
@@ -61,19 +64,19 @@ namespace DementiaProject_Two
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
             });
+            //.AddJwtBearer(x =>
+            //{
+            //    x.RequireHttpsMetadata = false;
+            //    x.SaveToken = true;
+            //    x.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        ValidateIssuerSigningKey = true,
+            //        IssuerSigningKey = new SymmetricSecurityKey(key),
+            //        ValidateIssuer = false,
+            //        ValidateAudience = false
+            //    };
+            //});
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

@@ -41,11 +41,11 @@ namespace MatchmakingService.Services.Repositories
                             (usr, match) => new { UserInfo = usr, UserMatch = match })
                             .Where(x => x.UserInfo.IdentityFK != userId)
                             .Where(x => x.UserMatch.User2Id == userId && x.UserMatch.FirstSelection == true);
-                            
-                            //.Where(x => x.UserInfo.Matches != null).Where(x => x.UserMatch.User2Id == userId);
 
-            
+            //.Where(x => x.UserInfo.Matches != null).Where(x => x.UserMatch.User2Id == userId);
 
+
+            return null;
 
 
 
@@ -143,3 +143,4 @@ namespace MatchmakingService.Services.Repositories
             //}
         }
     }
+}
