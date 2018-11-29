@@ -4,13 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using DementiaProject_Two.DataContexts;
-using DementiaProject_Two.Migrations.UserInformation;
 using DementiaProject_Two.Models.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DementiaProject_Two.Controllers
 {
+    
     [Route("[controller]/[action]")]
     public class UserInformationController : Controller
     {
@@ -27,6 +28,7 @@ namespace DementiaProject_Two.Controllers
             return View();
         }
         [HttpPost("Index")]
+       
         public async Task<IActionResult> Index(UserInformationModel userInfo, List<IFormFile> Picture)
         {
             foreach (var item in Picture)

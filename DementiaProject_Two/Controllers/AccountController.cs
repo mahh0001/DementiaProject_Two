@@ -52,7 +52,7 @@ namespace DementiaProject_Two.Controllers
             };
 
             var result = await _userManager.CreateAsync(newUser, user.Password);
-
+            
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", "UserInformation");

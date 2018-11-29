@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DementiaProject_Two.Migrations.UserInformation
+namespace DementiaProject_Two.Migrations
 {
     [DbContext(typeof(UserInformationContext))]
     partial class UserInformationContextModelSnapshot : ModelSnapshot
@@ -19,7 +19,7 @@ namespace DementiaProject_Two.Migrations.UserInformation
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DementiaProject_Two.Models.Account.UserInformation", b =>
+            modelBuilder.Entity("DementiaProject_Two.Models.Account.UserInformationModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

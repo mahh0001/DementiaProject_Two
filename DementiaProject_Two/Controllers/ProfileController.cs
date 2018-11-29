@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DementiaProject_Two.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,6 +11,7 @@ namespace DementiaProject_Two.Controllers
     public class ProfileController : Controller
     {
         public ProfileController(){ }
+        [Authorize]
 
         public IActionResult Index()
         {

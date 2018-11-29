@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DementiaProject_Two.Migrations.UserInformation
+namespace DementiaProject_Two.Migrations
 {
     public partial class UserInformation : Migration
     {

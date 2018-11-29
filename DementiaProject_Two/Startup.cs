@@ -35,15 +35,15 @@ namespace DementiaProject_Two
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.Configure<Tokens>(Configuration.GetSection("Tokens"));
 
-            services.AddDbContext<IdentityContext>(options => 
-            options.UseSqlServer(Configuration.GetConnectionString("DementiaConnection")));
 
             services.AddDbContext<UserInformationContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DementiaConnection")));
-
+            options.UseSqlServer(Configuration.GetConnectionString("UserInfoConnection")));
 
             services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
                                             .AddEntityFrameworkStores<IdentityContext>();
+
+            services.AddDbContext<IdentityContext>(options => 
+            options.UseSqlServer(Configuration.GetConnectionString("DementiaConnection")));
 
             //The password will have no preconditions for requirements
             services.Configure<IdentityOptions>(options =>
