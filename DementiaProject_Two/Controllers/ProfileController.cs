@@ -13,7 +13,7 @@ namespace DementiaProject_Two.Controllers
 
         public IActionResult Index()
         {
-            var user = new UserInfoViewModel() {  LastName = "Larsen", Age = 72, Gender = "Mand", ZipCode = 0000 };
+            var user = new UserInfoViewModel() { FirstName = "Lars", LastName = "Larsen", Age = 72, Gender = "Mand", ZipCode = 0000 };
 
             return View(user);   
         }
