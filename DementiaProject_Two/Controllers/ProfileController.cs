@@ -8,7 +8,7 @@ namespace DementiaProject_Two.Controllers
     [Route("[controller]")]
     public class ProfileController : Controller
     {
-        public IActionResult Index([Bind(include:"FirstName, LastName, Gender, Id, ZipCode")] UserInfoViewModel userModel)
+        public IActionResult Index()
         {
             var user = new UserInfoViewModel() { FirstName = "Lars", LastName = "Larsen", Age = 72, Gender = "Mand", ZipCode = 0000 };
 
