@@ -25,21 +25,22 @@ namespace MatchmakingService.Services.Repositories
         // Skroll first through
         public UserInfo FindRandomUser(Guid userId)
         {
-            var allUsers = MatchmakingContext.UserInfos
+            List<UserInfo> allUsers = MatchmakingContext.UserInfos
                 .Include(x => x.Matches)
                 .Where(x => x.IdentityFK != userId)
                 .ToList();
-            List<UserInfo> correctList = new List<UserInfo>();
             foreach (var user in allUsers) {
-                if (
-                    (user.Matches.Where(x => x.User2Id == userId && x.FirstSelection == true && x.IsAMatch == null).Count() > 0) ||
-                    (user.Matches.Where(x => x.User2Id != userId).Count() == 0)                    
-                    ) {
-                    correctList.Add(user);
+                // removes users from list, if user dosn't wan't to match or if both users already matched.
+                if ( 
+                    (user.Matches.Where(x => x.User2Id == userId && x.FirstSelection == false).Count() == 1) ||
+                    (user.Matches.Where(x => x.User2Id == userId && x.IsAMatch == true).Count() == 1)
+                    )
+                {
+                    allUsers.Remove(user);
                 }
             }
 
-            //// needs to do some kind of random selection on the correctList and return that UserInfo
+            //// needs to do some kind of random selection on the allUsers and return that UserInfo
 
             return null;
         }
