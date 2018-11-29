@@ -55,7 +55,7 @@ namespace DementiaProject_Two.Controllers
 
             if (result.Succeeded)
             {
-                return RedirectToAction("UserInformation", "Account");
+                return RedirectToAction("Index", "UserInformation");
             }
             else
             {
@@ -148,14 +148,13 @@ namespace DementiaProject_Two.Controllers
             return NotFound("Error: User not found");
         }
 
-        [Route("user")]
-        public IActionResult UserInformation()
+        public IActionResult ProfileInformation()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult UserInformation(UserInfoViewModel userInfoViewModel)
+        public IActionResult ProfileInformation(UserInfoViewModel userInfoViewModel)
         {
             if (userInfoViewModel == null)
             {

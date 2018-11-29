@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DementiaProject_Two.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class UserInformationController : Controller
     {
         private UserInformationContext context;
@@ -21,12 +21,12 @@ namespace DementiaProject_Two.Controllers
             this.context = context;
         }
 
-        [HttpGet("index")]
+        [HttpGet("Index")]
         public IActionResult Index()
         {
             return View();
         }
-        [HttpPost]
+        [HttpPost("Index")]
         public async Task<IActionResult> Index(UserInformationModel userInfo, List<IFormFile> Picture)
         {
             foreach (var item in Picture)
