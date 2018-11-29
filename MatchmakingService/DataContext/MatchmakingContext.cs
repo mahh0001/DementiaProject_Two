@@ -15,6 +15,7 @@ namespace MatchmakingService.DataContext
         }
         public DbSet<UserInfo> UserInfos { get; set; }
         public DbSet<Activity> Activities { get; set; }
+        public DbSet<UserMatch> Matches { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Model is used to define a many to many relation in EF Core
@@ -29,6 +30,11 @@ namespace MatchmakingService.DataContext
                 .HasOne(activityUser => activityUser.UserInfo)
                 .WithMany(userInfo => userInfo.ActivityUsers)
                 .HasForeignKey(activityUser => activityUser.ActivityId);
+
+            // Creating an PK for the UserMatch table.
+            modelBuilder.Entity<UserMatch>()
+                .HasKey(matches => new { matches.User1Id, matches.User2Id });
+
         }
 
     }

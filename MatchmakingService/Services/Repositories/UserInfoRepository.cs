@@ -9,11 +9,12 @@ namespace MatchmakingService.Services.Repositories
 {
     public class UserInfoRepository : Repository<UserInfo>, IUserInfoRepository
     {
-        public UserInfoRepository(MatchmakingContext userInfoContext) : base(userInfoContext)
+        public UserInfoRepository(MatchmakingContext matchmakingContext) : base(matchmakingContext)
         {
 
         }
-        public MatchmakingContext UserInfoContext
+
+        public MatchmakingContext MatchmakingContext
         {
             get
             {
@@ -23,7 +24,7 @@ namespace MatchmakingService.Services.Repositories
 
         public UserInfo GetInfoWithGuid(Guid id)
         {
-            return UserInfoContext.UserInfos.FirstOrDefault(x => x.IdentityFK == id);
+            return MatchmakingContext.UserInfos.FirstOrDefault(x => x.IdentityFK == id);
         }
     }
 }

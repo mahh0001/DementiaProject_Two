@@ -7,10 +7,9 @@ namespace MatchmakingService.Models
 {
     public class UserMatch
     {
-        public long Id { get; set; }
         public Guid User1Id { get; set; }
-        public bool User1Agree { get; set; }
         public Guid User2Id { get; set; }
-        public bool User2Agree { get; set; }
+        public bool FirstSelection { get; set; }
+        public bool? IsAMatch { get; set; }
     }
 }
