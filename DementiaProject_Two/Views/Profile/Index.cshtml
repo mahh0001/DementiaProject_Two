@@ -5,7 +5,7 @@
 }
 <section id="one">
     <div class="inner">
-        @using (Html.BeginForm("Login", "Account"))
+        @using (Html.BeginForm("EditProfil", "Profile"))
         {
             @Html.ValidationSummary()
             @Html.AntiForgeryToken()
@@ -29,7 +29,7 @@
         </p>
 
 
-            <button type="submit">Updater profil</button>
+            <button type="submit">Updatér profil</button>
 
 
         }

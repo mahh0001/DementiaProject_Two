@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DementiaProject_Two.Models;
 using Microsoft.AspNetCore.Mvc;
-using DementiaProject_Two.Models;
+
 
 namespace DementiaProject_Two.Controllers
 {
@@ -37,11 +37,11 @@ namespace DementiaProject_Two.Controllers
         [HttpPost]
         public IActionResult EditProfil([Bind(include:"ID, FirstName, LastName, Gender, Id, ZipCode")] UserInfoViewModel userModel)
         {
-<<<<<<< HEAD
+
 
             var user = new UserInfoViewModel() { FirstName = "Lars", LastName = "Larsen", Age = 72, Gender = "Mand", ZipCode = 0000 };
             return View(user);
-=======
+
             if (userModel == null)
             {
                 return NotFound("Could not find the user");
@@ -52,7 +52,7 @@ namespace DementiaProject_Two.Controllers
             }
 
             return Ok();
->>>>>>> 009b2981287cb09da56856bbc5776ea4baa027d4
+
         }
 
     }
