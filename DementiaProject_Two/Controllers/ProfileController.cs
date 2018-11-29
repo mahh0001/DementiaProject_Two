@@ -10,7 +10,7 @@ namespace DementiaProject_Two.Controllers
     [Route("[controller]/[action]")]
     public class ProfileController : Controller
     {
-      [Route("{id}")]
+        [Route("{id}")]
         public IActionResult Index(int? id)
         { 
             if (id == null)
@@ -34,7 +34,7 @@ namespace DementiaProject_Two.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditProfil([Bind(include:"ID, FirstName, LastName, Gender, Id, ZipCode")] UserInfoViewModel userModel)
+        public ActionResult EditProfil([Bind(include:"ID, FirstName, LastName, Gender, Id, ZipCode")] UserInfoViewModel userModel)
         {
             if (userModel == null)
             {
@@ -45,8 +45,8 @@ namespace DementiaProject_Two.Controllers
                 return View(userModel);
             }
 
-            return Ok();
-        }
+            return View();
+            }
 
     }
 }

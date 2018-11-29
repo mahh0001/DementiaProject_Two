@@ -1,11 +1,10 @@
 ﻿@model DementiaProject_Two.Models.UserInfoViewModel
-@using DementiaProject_Two.Models.Account
 @{
     ViewData["Title"] = "Profile";
 }
 <section id="one">
     <div class="inner">
-        @using (Html.BeginForm("Login", "Account"))
+        @using (Html.BeginForm("EditProfil", "Profile"))
         {
             @Html.ValidationSummary()
             @Html.AntiForgeryToken()
