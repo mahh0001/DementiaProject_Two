@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DementiaProject_Two.Migrations
+namespace DementiaProject_Two.Migrations.UserInformation
 {
     [DbContext(typeof(UserInformationContext))]
-    [Migration("20181129123441_UserInformation")]
-    partial class UserInformation
+    [Migration("20181129134854_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
