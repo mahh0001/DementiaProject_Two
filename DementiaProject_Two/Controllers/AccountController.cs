@@ -31,13 +31,13 @@ namespace DementiaProject_Two.Controllers
             _tokens = tokens.Value;
         }
 
-        [HttpGet("register")]
+        [HttpGet("Register")]
         public IActionResult Register()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register(Registration user)
         {
             if (!ModelState.IsValid)
@@ -52,10 +52,10 @@ namespace DementiaProject_Two.Controllers
             };
 
             var result = await _userManager.CreateAsync(newUser, user.Password);
-
+            
             if (result.Succeeded)
             {
-                return RedirectToAction("UserInformation", "Account");
+                return RedirectToAction("Index", "UserInformation");
             }
             else
             {
@@ -64,13 +64,13 @@ namespace DementiaProject_Two.Controllers
             }
         }
 
-        [HttpGet("login")]
+        [HttpGet("Login")]
         public IActionResult Login()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login(Login user, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -148,14 +148,13 @@ namespace DementiaProject_Two.Controllers
             return NotFound("Error: User not found");
         }
 
-        [Route("user")]
-        public IActionResult UserInformation()
+        public IActionResult ProfileInformation()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult UserInformation(UserInfoViewModel userInfoViewModel)
+        public IActionResult ProfileInformation(UserInfoViewModel userInfoViewModel)
         {
             if (userInfoViewModel == null)
             {

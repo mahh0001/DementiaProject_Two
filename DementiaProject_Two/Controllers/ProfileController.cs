@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DementiaProject_Two.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +11,11 @@ namespace DementiaProject_Two.Controllers
     public class ProfileController : Controller
     {
         public ProfileController(){ }
+        [Authorize]
 
         public IActionResult Index()
         {
-            var user = new UserInfoViewModel() {  LastName = "Larsen", Age = 72, Gender = "Mand", ZipCode = 0000 };
+            var user = new UserInfoViewModel() { FirstName = "Lars", LastName = "Larsen", Age = 72, Gender = "Mand", ZipCode = 0000 };
 
             return View(user);   
         }

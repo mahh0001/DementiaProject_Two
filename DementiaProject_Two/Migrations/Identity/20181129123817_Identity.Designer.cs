@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DementiaProject_Two.Migrations
+namespace DementiaProject_Two.Migrations.Identity
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20181122090119_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20181129123817_Identity")]
+    partial class Identity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
