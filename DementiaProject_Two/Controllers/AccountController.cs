@@ -31,13 +31,13 @@ namespace DementiaProject_Two.Controllers
             _tokens = tokens.Value;
         }
 
-        [HttpGet("register")]
+        [HttpGet("Register")]
         public IActionResult Register()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register(Registration user)
         {
             if (!ModelState.IsValid)
