@@ -8,24 +8,24 @@
         {
             @Html.ValidationSummary()
             @Html.AntiForgeryToken()
-            <p>
-                @Html.LabelFor(m => m.FirstName, "Fornavn")
-                @Html.TextBoxFor(m => m.FirstName)
-            </p>
-            <p>
-                @Html.LabelFor(m => m.LastName, "Efternavn")
-                @Html.PasswordFor(m => m.LastName)
-            </p>
-            <p>
-                @Html.LabelFor(m => m.Gender, "Køn")
-                @Html.DropDownListFor(m => m.Gender,
-                        new SelectList(new List<string>() {"Mand", "Kvinde", "Andet" }))
+        <p>
+            @Html.LabelFor(m => m.FirstName, "Fornavn")
+            @Html.TextBoxFor(m => m.FirstName, new { @Value = Model.FirstName })
+        </p>
+        <p>
+            @Html.LabelFor(m => m.LastName, "Efternavn")
+            @Html.TextBoxFor(m => m.LastName, new { @Value = Model.LastName })
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Gender, "Køn")
+            @Html.DropDownListFor(m => m.Gender,
+                 new SelectList(new List<string>() { "Mand", "Kvinde", "Andet" }), new { @Value = Model.Gender })
 
-            </p>
-            <p>
-                @Html.LabelFor(m => m.ZipCode, "Postnummer")
-                @Html.PasswordFor(m => m.ZipCode)
-            </p>
+        </p>
+        <p>
+            @Html.LabelFor(m => m.ZipCode, "Postnummer")
+            @Html.TextBoxFor(m => m.ZipCode, new { @Value = Model.ZipCode })
+        </p>
 
 
             <button type="submit">Updater profil</button>
