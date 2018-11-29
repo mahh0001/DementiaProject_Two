@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DementiaProject_Two\DementiaProject_Two.csproj" />
+    <ProjectReference Include="..\MatchmakingService\MatchmakingService.csproj" />
   </ItemGroup>
 
   <ItemGroup>
