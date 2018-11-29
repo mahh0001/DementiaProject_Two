@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DementiaProject_Two.Controllers
 {
-    [Route("[controller]/[action]")]
+    [Route("[controller]")]
     public class ProfileController : Controller
     {
         public IActionResult Index([Bind(include:"FirstName, LastName, Gender, Id, ZipCode")] UserInfoViewModel userModel)
