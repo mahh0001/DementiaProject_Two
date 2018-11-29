@@ -54,7 +54,7 @@ namespace DementiaProject_Two.Controllers
             }
             else
             {
-                return Ok();
+                return View();
             }
         }
     }
