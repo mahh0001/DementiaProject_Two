@@ -147,36 +147,5 @@ namespace DementiaProject_Two.Controllers
             }
             return NotFound("Error: User not found");
         }
-
-        public IActionResult ProfileInformation()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult ProfileInformation(UserInfoViewModel userInfoViewModel)
-        {
-            if (userInfoViewModel == null)
-            {
-                return BadRequest("You must fill out the required information");
-            }
-            if (!ModelState.IsValid)
-            {
-                return View(userInfoViewModel);
-            }
-
-            var newUserInfo = new UserInfoViewModel()
-            {
-                Id = userInfoViewModel.Id,
-                FirstName = userInfoViewModel.FirstName,
-                LastName = userInfoViewModel.LastName,
-                Picture = userInfoViewModel.Picture,
-                ZipCode = userInfoViewModel.ZipCode,
-                Gender = userInfoViewModel.Gender,
-                Age = userInfoViewModel.Age,
-            };
-
-            return RedirectToAction("Login", "Account");
-        }
     }
 }
