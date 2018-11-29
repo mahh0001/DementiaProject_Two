@@ -9,7 +9,7 @@ namespace MatchmakingService.Helpers
     // This seriously needs to be tested!!!
     public static class MatchmakingHelpers
     {
-        public static UserMatch[] RemoveMatchDuplicates(List<UserInfo> potentialMatchUsers, List<UserMatch> alreadyMatched)
+        public static List<UserMatch> RemoveMatchDuplicates(List<UserInfo> potentialMatchUsers, List<UserMatch> alreadyMatched)
         {
             HashSet<UserMatch> alreadySeen = new HashSet<UserMatch>();
             foreach (var item in potentialMatchUsers)
@@ -29,7 +29,7 @@ namespace MatchmakingService.Helpers
                     }
                 }
             }   
-            return alreadySeen.ToArray();
+            return alreadySeen.ToList();
         }
     }
 }
