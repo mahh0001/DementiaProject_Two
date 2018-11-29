@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DementiaProject_Two.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -8,9 +9,11 @@ namespace DementiaProject_Two.Controllers
     [Route("[controller]")]
     public class ProfileController : Controller
     {
+        public ProfileController(){ }
+
         public IActionResult Index()
         {
-            var user = new UserInfoViewModel() { FirstName = "Lars", LastName = "Larsen", Age = 72, Gender = "Mand", ZipCode = 0000 };
+            var user = new UserInfoViewModel() {  LastName = "Larsen", Age = 72, Gender = "Mand", ZipCode = 0000 };
 
             return View(user);   
         }
@@ -22,12 +25,12 @@ namespace DementiaProject_Two.Controllers
             {
                 return NotFound("Could not find the user");
             }
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                return View(userModel);
+                RedirectToAction("Index");
             }
 
-            return View();
+            return RedirectToAction("Index");
             }
 
     }
