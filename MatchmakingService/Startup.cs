@@ -31,7 +31,7 @@ namespace MatchmakingService
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddTransient<IUserInfoRepository, UserInfoRepository>();
-            services.AddDbContext<UserInfoContext>(options => options.UseInMemoryDatabase("Foo"));
+            services.AddDbContext<MatchmakingContext>(options => options.UseInMemoryDatabase("Foo"));
             
             // Adding the context to the container with a connection string to an actual database.
             //services.AddDbContext<UserInfoContext>
