@@ -12,7 +12,7 @@ using Microsoft.Extensions.Options;
 
 namespace DementiaProject_Two.Controllers
 {
-    [Route("[controller]")]
+    //[Route("[controller]")]
     public class AccountController : Controller
     {
         private UserManager<IdentityUser> _userManager;
@@ -37,7 +37,7 @@ namespace DementiaProject_Two.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("register")]
         public async Task<IActionResult> Register(Registration user)
         {
             if (!ModelState.IsValid)
@@ -55,7 +55,7 @@ namespace DementiaProject_Two.Controllers
 
             if (result.Succeeded)
             {
-                return RedirectToAction("UserInformation", "Account");
+                return RedirectToAction("Index", "UserInformation");
             }
             else
             {

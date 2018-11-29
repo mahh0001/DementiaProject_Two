@@ -36,7 +36,11 @@ namespace DementiaProject_Two
             services.Configure<Tokens>(Configuration.GetSection("Tokens"));
 
             services.AddDbContext<IdentityContext>(options => 
-            options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
+            options.UseSqlServer(Configuration.GetConnectionString("DementiaConnection")));
+
+            services.AddDbContext<UserInformationContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DementiaConnection")));
+
 
             services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
                                             .AddEntityFrameworkStores<IdentityContext>();
@@ -86,7 +90,7 @@ namespace DementiaProject_Two
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{int?}");
+                    template: "{controller=Home}/{action=Index}");
             });
         }
     }

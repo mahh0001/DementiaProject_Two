@@ -1,26 +1,19 @@
-﻿@model DementiaProject_Two.Models.UserInfoViewModel
+﻿@model DementiaProject_Two.Models.Account.UserInformationModel
 
 @{
-    ViewData["Title"] = "UserInformation";
+    ViewData["Title"] = "Index";
 }
 
-<h2>User Information</h2>
-
-<h4>Please fill out your information about yourself. Thanks.</h4>
+<h4>UserInformation</h4>
 <hr />
 <div class="row">
-    <div class="col-md-6">
-        <form asp-action="UserInformation">
+    <div class="col-md-4">
+        <form asp-action="Index" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
                 <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="align-center"></span>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="LastName" class="control-label"></label>
@@ -44,7 +37,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Picture" class="control-label"></label>
-                <input asp-for="Picture" class="form-control" />
+                <input type="file" id="files" asp-for="Picture" />
+                <img width="150" height="150" src="data:image/png;base64,@ViewData["Picture"]" style="border-radius:50%" />﻿
                 <span asp-validation-for="Picture" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -57,4 +51,3 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
