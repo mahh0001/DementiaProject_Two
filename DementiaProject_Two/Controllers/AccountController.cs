@@ -9,7 +9,6 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Authorization;
 
 namespace DementiaProject_Two.Controllers
 {
