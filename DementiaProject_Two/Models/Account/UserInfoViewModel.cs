@@ -11,7 +11,9 @@ namespace DementiaProject_Two.Models
     {
         [Key]
         public long Id { get; set; }
+        [MinLength(1)]
         public string FirstName { get; set; }
+        [MinLength(1)]
         public string LastName { get; set; }
         public int Age { get; set; }
         public int ZipCode { get; set; }

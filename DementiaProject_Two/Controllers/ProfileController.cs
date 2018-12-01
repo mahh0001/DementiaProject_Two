@@ -21,6 +21,7 @@ namespace DementiaProject_Two.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult EditProfil([Bind(include:"ID, FirstName, LastName, Gender, Id, ZipCode")] UserInfoViewModel userModel)
         {
             if (userModel == null)
