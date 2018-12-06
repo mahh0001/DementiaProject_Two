@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MatchmakingService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -27,6 +27,11 @@ namespace MatchmakingService.Controllers
                 return NotFound();
             }
             return Ok(userInfo);
+        }
+        [HttpGet]
+        public IActionResult GetAllUsers()
+        {
+            return Ok(_repo.GetAll());
         }
     }
 }
