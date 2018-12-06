@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DementiaProject_Two.Models.Matching;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -16,21 +17,21 @@ namespace DementiaProject_Two.Connections
             client.BaseAddress = new Uri(@"http://localhost:57731/");
         }
 
-        public static async Task<object> GetAuctionItems(Guid userId)
+        public static async Task<UserInfo> GetMatch(Guid userId)
         {
             ConfigureClient();
-            List<object> items = null;
+            UserInfo user = null;
             HttpResponseMessage response = await client.GetAsync(@"api/match/updateThis");
             try
             {
                 response.EnsureSuccessStatusCode();
-                items = await response.Content.ReadAsAsync<List<AuctionItem>>();
+                user = await response.Content.ReadAsAsync<UserInfo>();
             }
             catch (Exception ex)
             {
 
             }
-            return items;
+            return user;
         }
 
 
