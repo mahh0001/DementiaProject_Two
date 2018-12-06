@@ -38,7 +38,7 @@ namespace MatchmakingService.Services.Repositories
             var currentUser = MatchmakingContext.UserInfos.FirstOrDefault(x => x.IdentityFK == currentUserId);
             var potentialMatchUser = MatchmakingContext.UserInfos.Include(x => x.Matches).FirstOrDefault(x => x.IdentityFK == potentialMatchUserId);
 
-                                                                 
+            return true;
         }
     }
 }

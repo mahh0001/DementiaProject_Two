@@ -3,8 +3,10 @@ using DementiaProject_Two.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using DementiaProject_Two.ViewModels;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
+using AutoMapper;
 
 namespace DementiaProject_Two.Controllers
 {
@@ -21,8 +23,6 @@ namespace DementiaProject_Two.Controllers
         public UserInformationModel UserInfo { get; set; }
         public UserManager<IdentityUser> Userman { get; }
 
-      
-
         [HttpGet]
         [Authorize]
         public IActionResult Index()
@@ -34,10 +34,12 @@ namespace DementiaProject_Two.Controllers
             {
                 userInformation = new UserInformationModel() { Email = user.Email };
             }
-            return View(userInformation);
+            var userToMap = Mapper.Map<UserViewModel>(userInformation);
+            return View(userToMap);
         }
+
         [HttpPost]
-        public IActionResult Update([FromForm, Bind(include: "FirstName, LastName, Gender, Id, ZipCode, Email, Age")]UserInformationModel userModel)
+        public IActionResult Update([FromForm, Bind(include: "FirstName, LastName, GenderType, Id, ZipCode, Email, Age")] UserViewModel userModel)
         {
            if(userModel == null)
             {
@@ -48,9 +50,12 @@ namespace DementiaProject_Two.Controllers
                 return RedirectToAction("Index");
             }
             var info = repo.GetUserInfoByEmail(userModel.Email);
+
+
             if (info == null)
             {
-                repo.AddUserInfo(userModel);
+                var infoToMap = Mapper.Map<UserInformationModel>(info);
+                repo.AddUserInfo(infoToMap);
             }
             else
             {
@@ -58,7 +63,7 @@ namespace DementiaProject_Two.Controllers
                 info.FirstName = userModel.FirstName;
                 info.LastName = userModel.LastName;
                 info.ZipCode = userModel.ZipCode;
-                info.Gender = userModel.Gender;
+                info.Gender = userModel.GenderType.ToString();
                 repo.Update(info);
             }
            
