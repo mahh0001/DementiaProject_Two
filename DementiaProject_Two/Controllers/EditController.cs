@@ -9,19 +9,18 @@ namespace DementiaProject_Two.Controllers
 {
     public class EditController : Controller
     {
-        public EditController(UserManager<IdentityUser> userman)
+        public EditController(UserManager<IdentityUser> userman, IRepository repo)
         {
             Userman = userman;
+            this.repo = repo;
         }
         private IRepository repo;
 
         public UserInformationModel UserInfo { get; set; }
         public UserManager<IdentityUser> Userman { get; }
 
-        public EditController(IRepository repo)
-        {
-            this.repo = repo;
-        }
+      
+
         [HttpGet("")]
         public IActionResult Index()
         {
