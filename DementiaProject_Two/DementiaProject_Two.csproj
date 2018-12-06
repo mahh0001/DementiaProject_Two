@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Models\Matching\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
 
