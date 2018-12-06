@@ -36,6 +36,7 @@ namespace DementiaProject_Two.Connections
         public static async Task<bool> SaveMatchSelection(Guid currentUser, Guid otherUser, bool match)
         {
             ConfigureClient();
+            bool saveSucceeded = false;
             MatchDTO matchDto = new MatchDTO
             {
                 User1 = currentUser,
@@ -43,6 +44,17 @@ namespace DementiaProject_Two.Connections
                 Match = match
             };
             HttpResponseMessage response = await client.PostAsJsonAsync(@"api/match/savematch", matchDto);
+
+            try
+            {
+                response.EnsureSuccessStatusCode();
+                saveSucceeded = await response.Content.ReadAsAsync<bool>();
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return saveSucceeded;
         }
 
     }
