@@ -10,7 +10,7 @@ namespace DementiaProject_Two.Models
     public class UserInfoViewModel
     {
         [Key]
-        public long Id { get; set; }
+        public Guid Id { get; set; }
         [MinLength(1)]
         public string FirstName { get; set; }
         [MinLength(1)]
