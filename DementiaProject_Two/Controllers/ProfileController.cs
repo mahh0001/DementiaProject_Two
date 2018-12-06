@@ -15,12 +15,13 @@ namespace DementiaProject_Two.Controllers
         [Authorize] 
         public IActionResult Index()
         {
-            var user = new UserInfoViewModel() { FirstName = "Lars", LastName = "Larsen", Age = 72, Gender = "Mand", ZipCode = 0000 };
+            
 
-            return View(user);   
+            return View();   
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult EditProfil([Bind(include:"ID, FirstName, LastName, Gender, Id, ZipCode")] UserInfoViewModel userModel)
         {
             if (userModel == null)
