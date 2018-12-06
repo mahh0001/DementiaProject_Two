@@ -8,6 +8,7 @@ using System;
 
 namespace DementiaProject_Two.Controllers
 {
+    [Route("[controller]/[action]")]
     public class EditController : Controller
     {
         public EditController(UserManager<IdentityUser> userman, IRepository repo)
