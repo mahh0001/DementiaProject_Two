@@ -31,7 +31,7 @@ namespace DementiaProject_Two.Repositories
 
         public UserInformationModel Update(UserInformationModel userInfo)
         {
-            context.UserInformations.Update(userInfo);
+            context.Update(userInfo);
             context.SaveChanges();
             return userInfo;
         }
