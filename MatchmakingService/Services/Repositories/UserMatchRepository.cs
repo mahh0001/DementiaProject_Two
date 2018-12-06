@@ -33,12 +33,25 @@ namespace MatchmakingService.Services.Repositories
             return potentialMatch;
         }
 
-        public bool SaveMatchChoice(Guid currentUserId, Guid potentialMatchUserId, bool match)
+        public bool SaveMatchChoice(Guid currentUserId, Guid potentialMatchUserId, bool userMatch)
         {
             var currentUser = MatchmakingContext.UserInfos.FirstOrDefault(x => x.IdentityFK == currentUserId);
             var potentialMatchUser = MatchmakingContext.UserInfos.Include(x => x.Matches).FirstOrDefault(x => x.IdentityFK == potentialMatchUserId);
 
-            return true;
+            if (potentialMatchUser.Matches.Where(x => x.User1Id == potentialMatchUserId && x.User2Id == currentUserId && x.FirstSelection == true).Count() == 1)
+            {
+                UserMatch match = potentialMatchUser.Matches.Where(x => x.User1Id == potentialMatchUserId && x.User2Id == currentUserId && x.FirstSelection == true).FirstOrDefault();
+                match.IsAMatch = userMatch;
+                MatchmakingContext.Update(match);
+            }
+            else
+            {
+                UserMatch newUserMatch = new UserMatch { User1 = currentUser, User2 = potentialMatchUser, FirstSelection = userMatch } ;
+                currentUser.Matches.Add(newUserMatch);
+            }
+            var state = MatchmakingContext.SaveChanges();
+            return state == 1 ? true : false;
+
         }
     }
 }

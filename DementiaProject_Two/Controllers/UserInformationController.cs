@@ -12,11 +12,11 @@ namespace DementiaProject_Two.Controllers
     [Route("[controller]/[action]")]
     public class UserInformationController : Controller
     {
-        private UserInformationContext context;
+        private UserInformationContext _context;
 
         public UserInformationController(UserInformationContext context)
         {
-            this.context = context;
+            _context = context;
         }
 
         [HttpGet]
@@ -37,8 +37,8 @@ namespace DementiaProject_Two.Controllers
                 ViewData["Picture"] = Convert.ToBase64String(userInfo.Picture);
             }
 
-            context.UserInformations.Add(userInfo);
-            context.SaveChanges();
+            _context.UserInformations.Add(userInfo);
+            _context.SaveChanges();
 
 
             if (ModelState.IsValid)

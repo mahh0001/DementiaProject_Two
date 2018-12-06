@@ -20,6 +20,8 @@ namespace MatchmakingService.Controllers
             _repo = repo;
         }
 
+        [HttpPost]
+        [Route("getmatch")]
         // look into making all dis shit asyncronous rsum
         public ActionResult<UserInfo> GetMatch(Guid currentUser)
         {
@@ -27,6 +29,8 @@ namespace MatchmakingService.Controllers
             return user;
         }
 
+        [HttpPost]
+        [Route("savematch")]
         public ActionResult<bool> SaveMatch(MatchDTO matchDto)
         {
             return _repo.SaveMatchChoice(matchDto.User1, matchDto.User2, matchDto.Match);
