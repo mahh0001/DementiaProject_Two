@@ -14,12 +14,12 @@ namespace DementiaProject_Two.Controllers
     [Route("[controller]/[action]")]
     public class UserInformationController : Controller
     {
-        private UserInformationContext _context;
+        //private UserInformationContext _context;
 
-        public UserInformationController(UserInformationContext context)
-        {
-            _context = context;
-        }
+        //public UserInformationController(UserInformationContext context)
+        //{
+        //    _context = context;
+        //}
 
         [HttpGet]
         public IActionResult Index()
@@ -27,7 +27,7 @@ namespace DementiaProject_Two.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Index(UserInformationModel userInfo, IFormFile picture)
+        public async Task<IActionResult> Index(UserInfoDTO userInfo, IFormFile picture)
         {
             //For saving a picture in the database
             using (MemoryStream stream = new MemoryStream())
@@ -40,18 +40,21 @@ namespace DementiaProject_Two.Controllers
 
             // This needs to be looked over by front end people, we need to remove the email attribute 
             // neeed the fucking IdentityFK "
-            //var userInfoDto = new UserInfoDTO
-            //{
-            //    FirstName = userInfo.FirstName,
-            //    LastName = userInfo.LastName,
-            //    Age = userInfo.Age,
-            //    ZipCode = userInfo.ZipCode,
-            //    Gender = userInfo.Gender,
-            //    Picture = userInfo.Picture,
-                
-            //}
-            _context.UserInformations.Add(userInfo);
-            _context.SaveChanges();
+            var userInfoDto = new UserInfoDTO
+            {
+                FirstName = userInfo.FirstName,
+                LastName = userInfo.LastName,
+                Age = userInfo.Age,
+                ZipCode = userInfo.ZipCode,
+                Gender = userInfo.Gender,
+                Picture = userInfo.Picture,
+                IdentityFK = userInfo.IdentityFK
+            };
+
+            await MatchmakingApi.AddToUserInformation(userInfoDto);
+
+            //_context.UserInformations.Add(userInfo);
+            //_context.SaveChanges();
 
 
             if (ModelState.IsValid)

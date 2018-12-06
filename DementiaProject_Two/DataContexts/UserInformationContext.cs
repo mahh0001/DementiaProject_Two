@@ -8,15 +8,15 @@ using DementiaProject_Two.ViewModels;
 
 namespace DementiaProject_Two.DataContexts
 {
-    public class UserInformationContext : DbContext
-    {
-        public UserInformationContext(DbContextOptions<UserInformationContext> options) : base (options)
-        {
-            Database.EnsureCreated();
-        }
+    //public class UserInformationContext : DbContext
+    //{
+    //    public UserInformationContext(DbContextOptions<UserInformationContext> options) : base (options)
+    //    {
+    //        Database.EnsureCreated();
+    //    }
 
-        public DbSet<UserInformationModel> UserInformations { get; set; }
+    //    public DbSet<UserInformationModel> UserInformations { get; set; }
 
-       // public DbSet<UserViewModel> UserViewModel { get; set; }
-    }
+    //   // public DbSet<UserViewModel> UserViewModel { get; set; }
+    //}
 }

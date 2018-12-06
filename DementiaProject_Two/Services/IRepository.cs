@@ -3,11 +3,11 @@ using System;
 
 namespace DementiaProject_Two.Repositories
 {
-    public interface IRepository
-    {
-        UserInformationModel GetUserInfoByEmail(string email);
-        UserInformationModel Update(UserInformationModel userInfo);
+    //public interface IRepository
+    //{
+    //    UserInformationModel GetUserInfoByEmail(string email);
+    //    UserInformationModel Update(UserInformationModel userInfo);
 
-        void AddUserInfo(UserInformationModel userinfo);
-    }
+    //    void AddUserInfo(UserInformationModel userinfo);
+    //}
 }

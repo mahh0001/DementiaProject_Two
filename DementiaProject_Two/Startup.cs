@@ -7,6 +7,7 @@ using AutoMapper;
 using DementiaProject_Two.DataContexts;
 using DementiaProject_Two.Models;
 using DementiaProject_Two.Models.Account;
+using DementiaProject_Two.Models.DataTransferObjects;
 using DementiaProject_Two.Repositories;
 using DementiaProject_Two.ViewModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -39,11 +40,11 @@ namespace DementiaProject_Two
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.Configure<Tokens>(Configuration.GetSection("Tokens"));
 
-            services.AddScoped<IRepository, UserInfoRepository>();
+            //services.AddScoped<IRepository, UserInfoRepository>();
 
 
-            services.AddDbContext<UserInformationContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("UserInfoConnection")));
+            //services.AddDbContext<UserInformationContext>(options =>
+            //options.UseSqlServer(Configuration.GetConnectionString("UserInfoConnection")));
 
             services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
                                             .AddEntityFrameworkStores<IdentityContext>();
@@ -91,8 +92,8 @@ namespace DementiaProject_Two
 
             Mapper.Initialize(config => 
             {
-                config.CreateMap<UserInformationModel, UserViewModel>();
-                config.CreateMap<UserViewModel, UserInformationModel>();
+                config.CreateMap<UserInfoDTO, UserViewModel>();
+                config.CreateMap<UserViewModel, UserInfoDTO>();
             });
             
             app.UseAuthentication();

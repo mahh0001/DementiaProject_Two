@@ -35,18 +35,61 @@ namespace DementiaProject_Two.Connections
 
         public static async Task AddToUserInformation(UserInfoDTO userInfo)
         {
+            ConfigureClient();
+            HttpResponseMessage response = await client.PostAsJsonAsync(@"api/user/addinfo", userInfo);
+            try
+            {
+                response.EnsureSuccessStatusCode();
+                // might wanna add a bool rsum to be sure everything went smooth
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        public static async Task UpdateUserInformation(UserInfoDTO userInfo)
+        {
+            ConfigureClient();
+            HttpResponseMessage response = await client.PostAsJsonAsync(@"api/user/updateuser", userInfo);
+            try
+            {
+                response.EnsureSuccessStatusCode();
+                // might wanna add a bool rsum to be sure everything went smooth
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public static async Task<UserInfoDTO> GetUserInformation(Guid userId)
+        {
+            ConfigureClient();
+            UserInfoDTO userInfo = null;
+            HttpResponseMessage response = await client.PostAsJsonAsync(@"api/user/getuser", userId);
+            try
+            {
+                response.EnsureSuccessStatusCode();
+                userInfo = await response.Content.ReadAsAsync<UserInfoDTO>();
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return userInfo;
 
         }
 
-        public static async Task<UserInformationModel> GetMatch(Guid userId)
+        public static async Task<UserInfoDTO> GetMatch(Guid userId)
         {
             ConfigureClient();
-            UserInformationModel user = null;
+            UserInfoDTO user = null;
             HttpResponseMessage response = await client.PostAsJsonAsync(@"api/match/getmatch", userId);
             try
             {
                 response.EnsureSuccessStatusCode();
-                user = await response.Content.ReadAsAsync<UserInformationModel>();
+                user = await response.Content.ReadAsAsync<UserInfoDTO>();
             }
             catch (Exception ex)
             {

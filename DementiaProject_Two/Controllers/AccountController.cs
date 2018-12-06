@@ -56,6 +56,9 @@ namespace DementiaProject_Two.Controllers
             
             if (result.Succeeded)
             {
+                var guid = Guid.Parse(newUser.Id);
+                await MatchmakingApi.CreateUserInformation(guid);
+
                 return RedirectToAction("Index", "UserInformation");
             }
             else
