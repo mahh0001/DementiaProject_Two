@@ -28,7 +28,7 @@ namespace DementiaProject_Two.Controllers
         public IActionResult Index()
         {
             var user = Userman.FindByEmailAsync(User.Identity.Name).Result;
-            var userInformation = repo.Get(user.Email);
+            var userInformation = repo.GetUserInfoByEmail(user.Email);
 
             if(userInformation == null)
             {
@@ -37,7 +37,7 @@ namespace DementiaProject_Two.Controllers
             return View(userInformation);
         }
         [HttpPost]
-        public IActionResult Update([FromForm, Bind(include: "FirstName, LastName, Gender, Id, ZipCode, Picture")]UserInformationModel userModel)
+        public IActionResult Update([FromForm, Bind(include: "FirstName, LastName, Gender, Id, ZipCode, Email, Age")]UserInformationModel userModel)
         {
            if(userModel == null)
             {
@@ -47,7 +47,16 @@ namespace DementiaProject_Two.Controllers
             {
                 return RedirectToAction("Index");
             }
-            repo.Update(userModel);
+
+            if(repo.GetUserInfoByEmail(userModel.Email) == null)
+            {
+                repo.AddUserInfo(userModel);
+            }
+            else
+            {
+                repo.Update(userModel);
+            }
+           
             return RedirectToAction("Index");
         }
 

@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MatchmakingService.Models
+namespace DementiaProject_Two.Models.Matching
 {
     public class UserInfo
     {
-        [Key]
         public long Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -19,6 +17,6 @@ namespace MatchmakingService.Models
         //Fremmednøgle til Identity
         public Guid IdentityFK { get; set; }
         //public List<ActivityUser> ActivityUsers { get; set; }
-        public List<UserMatch> Matches { get; set; }
+        //public List<UserMatch> Matches { get; set; } => this shouldnt be needed up in here. up in here.
     }
 }

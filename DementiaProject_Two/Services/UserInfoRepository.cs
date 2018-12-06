@@ -18,14 +18,20 @@ namespace DementiaProject_Two.Repositories
             this.context = context;
         }
 
-        public UserInformationModel Get(string  email)
+        public void AddUserInfo(UserInformationModel userinfo)
+        {
+            context.UserInformations.Add(userinfo);
+            context.SaveChanges();
+        }
+
+        public UserInformationModel GetUserInfoByEmail(string  email)
         {
             return context.UserInformations.FirstOrDefault(x => x.Email == email);
         }
 
         public UserInformationModel Update(UserInformationModel userInfo)
         {
-            context.Attach(userInfo).State = EntityState.Modified;
+            context.UserInformations.Update(userInfo);
             context.SaveChanges();
             return userInfo;
         }
