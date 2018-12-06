@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MatchmakingService.Models;
+using MatchmakingService.Models.DataTransferObjects;
 using MatchmakingService.Services.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -41,6 +42,20 @@ namespace MatchmakingService.Controllers
             var user = new UserInfo { IdentityFK = userId };
             _repo.Add(user);
             _repo.SaveChanges();
+        }
+
+        [HttpPost]
+        [Route("addinfo")]
+        public void AddUserInfo(UserInfoDTO userInfo)
+        {
+            _repo.AddUserInfo(userInfo);
+        }
+
+        [HttpPost]
+        [Route("updateuser")]
+        public void UpdateUserInfo(UserInfoDTO userInfo)
+        {
+            _repo.AddUserInfo(userInfo);
         }
     }
 }

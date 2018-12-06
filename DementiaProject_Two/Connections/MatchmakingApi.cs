@@ -1,5 +1,4 @@
-﻿using DementiaProject_Two.Models.Account;
-using DementiaProject_Two.Models.DataTransferObjects;
+﻿using DementiaProject_Two.Models.DataTransferObjects;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;

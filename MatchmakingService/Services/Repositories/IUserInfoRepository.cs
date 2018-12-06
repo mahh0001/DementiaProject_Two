@@ -1,4 +1,5 @@
 ﻿using MatchmakingService.Models;
+using MatchmakingService.Models.DataTransferObjects;
 using System;
 
 namespace MatchmakingService.Services.Repositories
@@ -7,5 +8,6 @@ namespace MatchmakingService.Services.Repositories
     {
         void SaveChanges();
         UserInfo GetInfoWithGuid(Guid id);
+        void AddUserInfo(UserInfoDTO userInfo)
     }
 }
