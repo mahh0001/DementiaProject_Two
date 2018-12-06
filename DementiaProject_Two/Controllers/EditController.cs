@@ -28,7 +28,7 @@ namespace DementiaProject_Two.Controllers
         public IActionResult Index()
         {
             var user = Userman.FindByEmailAsync(User.Identity.Name).Result;
-            var userInformation = repo.Get(user.Email);
+            var userInformation = repo.GetUserInfoByEmail(user.Email);
 
             if(userInformation == null)
             {

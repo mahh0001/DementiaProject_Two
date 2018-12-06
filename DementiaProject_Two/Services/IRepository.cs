@@ -5,7 +5,7 @@ namespace DementiaProject_Two.Repositories
 {
     public interface IRepository
     {
-        UserInformationModel Get(string id);
+        UserInformationModel GetUserInfoByEmail(string email);
         UserInformationModel Update(UserInformationModel userInfo);
     }
 }
