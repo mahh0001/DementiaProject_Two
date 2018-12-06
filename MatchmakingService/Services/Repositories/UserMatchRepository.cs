@@ -23,33 +23,22 @@ namespace MatchmakingService.Services.Repositories
             }
         }
 
-        // Skroll first through
         public UserInfo FindRandomUser(Guid currentUser)
         {
-            List<UserInfo> allUsers = MatchmakingContext.UserInfos //check if both users exist and user1 wants to match with user2 OR they havent decided/seen each other yet
+            UserInfo potentialMatch = MatchmakingContext.UserInfos //check if both users exist and user1 wants to match with user2 OR they havent decided/seen each other yet
                 .Include(x => x.Matches.Where(y => (y.User1Id == x.IdentityFK && y.User2Id == currentUser && y.FirstSelection == true && y.IsAMatch == null) || y == null))
                 .Where(x => x.IdentityFK != currentUser)
-                .ToList();
-            foreach (var user in allUsers)
-            {
-                // removes users from list, if user dosn't wan't to match or if both users already matched.
-                if (
-                    (user.Matches.Where(x => x.User2Id == currentUser && x.FirstSelection == false).Count() == 1) ||
-                    (user.Matches.Where(x => x.User2Id == currentUser && x.IsAMatch == true).Count() == 1)
-                    )
-                {
-                    allUsers.Remove(user);
-                }
-            }
+                .FirstOrDefault();
 
-            //// needs to do some kind of random selection on the allUsers and return that UserInfo
-
-            return null;
+            return potentialMatch;
         }
 
-        public bool SaveMatchChoice(Guid currentUser, Guid potentialMatchUser, bool match)
+        public bool SaveMatchChoice(Guid currentUserId, Guid potentialMatchUserId, bool match)
         {
-            return true;
+            var currentUser = MatchmakingContext.UserInfos.FirstOrDefault(x => x.IdentityFK == currentUserId);
+            var potentialMatchUser = MatchmakingContext.UserInfos.Include(x => x.Matches).FirstOrDefault(x => x.IdentityFK == potentialMatchUserId);
+
+                                                                 
         }
     }
 }
