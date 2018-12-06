@@ -19,6 +19,6 @@ namespace MatchmakingService.Models
         //Fremmednøgle til Identity
         public Guid IdentityFK { get; set; }
         //public List<ActivityUser> ActivityUsers { get; set; }
-        //public List<UserMatch> Matches { get; set; }
+        public List<UserMatch> Matches { get; set; }
     }
 }
