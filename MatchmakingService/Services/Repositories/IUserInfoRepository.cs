@@ -8,6 +8,6 @@ namespace MatchmakingService.Services.Repositories
     {
         void SaveChanges();
         UserInfo GetInfoWithGuid(Guid id);
-        void AddUserInfo(UserInfoDTO userInfo)
+        void AddUserInfo(UserInfoDTO userInfo);
     }
 }
