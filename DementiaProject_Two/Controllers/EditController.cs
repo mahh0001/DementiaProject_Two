@@ -47,14 +47,19 @@ namespace DementiaProject_Two.Controllers
             {
                 return RedirectToAction("Index");
             }
-
-            if(repo.GetUserInfoByEmail(userModel.Email) == null)
+            var info = repo.GetUserInfoByEmail(userModel.Email);
+            if (info == null)
             {
                 repo.AddUserInfo(userModel);
             }
             else
             {
-                repo.Update(userModel);
+                info.Age = userModel.Age;
+                info.FirstName = userModel.FirstName;
+                info.LastName = userModel.LastName;
+                info.ZipCode = userModel.ZipCode;
+                info.Gender = userModel.Gender;
+                repo.Update(info);
             }
            
             return RedirectToAction("Index");
