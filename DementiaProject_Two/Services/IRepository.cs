@@ -7,5 +7,7 @@ namespace DementiaProject_Two.Repositories
     {
         UserInformationModel GetUserInfoByEmail(string email);
         UserInformationModel Update(UserInformationModel userInfo);
+
+        void AddUserInfo(UserInformationModel userinfo);
     }
 }

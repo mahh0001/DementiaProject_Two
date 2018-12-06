@@ -8,6 +8,8 @@ namespace MatchmakingService.Services.Repositories
 {
     public interface IUserMatchRepository : IRepository<UserMatch>
     {
+        UserInfo FindRandomUser(Guid currentUser);
+        bool SaveMatchChoice(Guid currentUser, Guid potentialMatchUser, bool match);
         //UserMatch GetMatch(Guid u1Id);
     }
 }
