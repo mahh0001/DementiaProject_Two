@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using DementiaProject_Two.DataContexts;
 using DementiaProject_Two.Models.Account;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DementiaProject_Two.Controllers
 {
-    
+
     [Route("[controller]/[action]")]
     public class UserInformationController : Controller
     {
