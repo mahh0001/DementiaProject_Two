@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MatchmakingService.Models;
+using MatchmakingService.Models.DataTransferObjects;
 using MatchmakingService.Services.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,9 +20,16 @@ namespace MatchmakingService.Controllers
             _repo = repo;
         }
 
-        public async Task<ActionResult<UserInfo>> GetMatch()
+        // look into making all dis shit asyncronous rsum
+        public ActionResult<UserInfo> GetMatch(Guid currentUser)
         {
-            var user = _repo.
+            var user = _repo.FindRandomUser(currentUser);
+            return user;
+        }
+
+        public ActionResult<bool> SaveMatch(MatchDTO matchDto)
+        {
+            return _repo.SaveMatchChoice(matchDto.User1, matchDto.User2, matchDto.Match);
         }
 
 

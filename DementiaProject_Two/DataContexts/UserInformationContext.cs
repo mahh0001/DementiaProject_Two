@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DementiaProject_Two.ViewModels;
 
 namespace DementiaProject_Two.DataContexts
 {
@@ -15,5 +16,7 @@ namespace DementiaProject_Two.DataContexts
         }
 
         public DbSet<UserInformationModel> UserInformations { get; set; }
+
+        public DbSet<DementiaProject_Two.ViewModels.UserViewModel> UserViewModel { get; set; }
     }
 }

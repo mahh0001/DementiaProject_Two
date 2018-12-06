@@ -1,11 +1,6 @@
 ﻿using DementiaProject_Two.DataContexts;
 using DementiaProject_Two.Models.Account;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DementiaProject_Two.Repositories
 {
@@ -31,7 +26,7 @@ namespace DementiaProject_Two.Repositories
 
         public UserInformationModel Update(UserInformationModel userInfo)
         {
-            context.UserInformations.Update(userInfo);
+            context.Update(userInfo);
             context.SaveChanges();
             return userInfo;
         }

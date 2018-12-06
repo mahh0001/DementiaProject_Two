@@ -51,6 +51,7 @@ namespace MatchmakingService.Services.Repositories
             }
             var state = MatchmakingContext.SaveChanges();
             return state == 1 ? true : false;
+
         }
     }
 }

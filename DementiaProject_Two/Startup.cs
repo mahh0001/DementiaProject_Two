@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using DementiaProject_Two.DataContexts;
 using DementiaProject_Two.Models;
+using DementiaProject_Two.Models.Account;
 using DementiaProject_Two.Repositories;
+using DementiaProject_Two.ViewModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -85,6 +88,12 @@ namespace DementiaProject_Two
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            Mapper.Initialize(config => 
+            {
+                config.CreateMap<UserInformationModel, UserViewModel>();
+                config.CreateMap<UserViewModel, UserInformationModel>();
+            });
             
             app.UseAuthentication();
             app.UseStaticFiles();
