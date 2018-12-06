@@ -1,4 +1,5 @@
-﻿using DementiaProject_Two.Models.Matching;
+﻿using DementiaProject_Two.Models.Account;
+using DementiaProject_Two.Models.Matching;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +18,15 @@ namespace DementiaProject_Two.Connections
             client.BaseAddress = new Uri(@"http://localhost:5050/");
         }
 
-        public static async Task<UserInfo> GetMatch(Guid userId)
+        public static async Task<UserInformationModel> GetMatch(Guid userId)
         {
             ConfigureClient();
-            UserInfo user = null;
+            UserInformationModel user = null;
             HttpResponseMessage response = await client.GetAsync(@"api/match/updateThis");
             try
             {
                 response.EnsureSuccessStatusCode();
-                user = await response.Content.ReadAsAsync<UserInfo>();
+                user = await response.Content.ReadAsAsync<UserInformationModel>();
             }
             catch (Exception ex)
             {
@@ -33,8 +34,6 @@ namespace DementiaProject_Two.Connections
             }
             return user;
         }
-
-
 
     }
 }
