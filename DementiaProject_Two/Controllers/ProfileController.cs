@@ -34,7 +34,7 @@ namespace DementiaProject_Two.Controllers
             }
 
             return RedirectToAction("Index");
-            }
+        }
 
     }
 }
