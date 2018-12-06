@@ -19,9 +19,11 @@ namespace MatchmakingService.Controllers
             _repo = repo;
         }
 
-        public async Task<ActionResult<UserInfo>> GetMatch()
+        // look into making all dis shit asyncronous rsum
+        public ActionResult<UserInfo> GetMatch(Guid currentUser)
         {
-            var user = _repo.
+            var user = _repo.FindRandomUser(currentUser);
+            return user;
         }
 
 
