@@ -32,8 +32,7 @@ namespace DementiaProject_Two.Controllers
             {
                 await picture.CopyToAsync(stream);
                 userInfo.Picture = stream.ToArray();
-            
-                
+
                 ViewData["Picture"] = Convert.ToBase64String(userInfo.Picture);
             }
 

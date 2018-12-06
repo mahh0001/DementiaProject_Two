@@ -8,7 +8,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" asp-controller="UserInformation" asp-action="Index">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
@@ -47,7 +47,7 @@
                 <span asp-validation-for="Picture" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Upload" class="btn btn-default" />
             </div>
         </form>
     </div>
