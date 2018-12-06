@@ -16,11 +16,28 @@ namespace DementiaProject_Two.Connections
             client.BaseAddress = new Uri(@"http://localhost:5050/");
         }
 
+        public static async Task<bool> CreateUserInformation(Guid userId)
+        {
+            ConfigureClient();
+            bool userCreated = false;
+            HttpResponseMessage response = await client.PostAsJsonAsync(@"api/makeNewController/createuser", userId);
+            try
+            {
+                response.EnsureSuccessStatusCode();
+                userCreated = await response.Content.ReadAsAsync<bool>();
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return userCreated;
+        }
+
         public static async Task<UserInformationModel> GetMatch(Guid userId)
         {
             ConfigureClient();
             UserInformationModel user = null;
-            HttpResponseMessage response = await client.GetAsync(@"api/match/updateThis");
+            HttpResponseMessage response = await client.PostAsJsonAsync(@"api/match/getmatch", userId);
             try
             {
                 response.EnsureSuccessStatusCode();
