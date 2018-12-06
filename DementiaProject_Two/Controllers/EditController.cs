@@ -3,8 +3,6 @@ using DementiaProject_Two.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using System;
 
 namespace DementiaProject_Two.Controllers
 {
