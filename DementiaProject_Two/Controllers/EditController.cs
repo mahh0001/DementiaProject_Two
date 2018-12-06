@@ -1,5 +1,6 @@
 ﻿using DementiaProject_Two.Models.Account;
 using DementiaProject_Two.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -21,7 +22,8 @@ namespace DementiaProject_Two.Controllers
 
       
 
-        [HttpGet("")]
+        [HttpGet]
+        [Authorize]
         public IActionResult Index()
         {
             var user = Userman.FindByEmailAsync(User.Identity.Name).Result;
