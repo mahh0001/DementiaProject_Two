@@ -49,7 +49,7 @@ namespace MatchmakingService.Services.Repositories
 
         public IActionResult SaveMatchChoice(Guid currentUser, Guid potentialMatchUser, bool match)
         {
-
+            return null;
         }
     }
 }
