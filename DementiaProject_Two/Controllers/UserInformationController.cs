@@ -28,21 +28,18 @@ namespace DementiaProject_Two.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Index(UserInformationModel userInfo, List<IFormFile> Picture)
+        public async Task<IActionResult> Index(UserInformationModel userInfo, IFormFile picture)
         {
-            foreach (var item in Picture)
-            {
-                if (item.Length > 0)
-                {
-                    using (MemoryStream stream = new MemoryStream())
-                    {
-                        await item.CopyToAsync(stream);
-                        userInfo.Picture = stream.ToArray();
 
-                    }
-                }
-            ViewData["Picture"] = Convert.ToBase64String( userInfo.Picture);
+            using (MemoryStream stream = new MemoryStream())
+            {
+                await picture.CopyToAsync(stream);
+                userInfo.Picture = stream.ToArray();
+            
+                
+            ViewData["Picture"] = Convert.ToBase64String(userInfo.Picture);
             }
+
             context.UserInformations.Add(userInfo);
             context.SaveChanges();
 
