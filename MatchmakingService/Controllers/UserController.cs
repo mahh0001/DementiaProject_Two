@@ -28,5 +28,10 @@ namespace MatchmakingService.Controllers
             }
             return Ok(userInfo);
         }
+        [HttpGet]
+        public IActionResult GetAllUsers()
+        {
+            return Ok(_repo.GetAll());
+        }
     }
 }
