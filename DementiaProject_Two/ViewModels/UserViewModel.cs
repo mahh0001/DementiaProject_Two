@@ -19,8 +19,8 @@ namespace DementiaProject_Two.ViewModels
         public string FirstName { get; set; }
         [MinLength(2)]
         public string LastName { get; set; }
-        [Required]
         public int Age { get; set; }
+
         [Range(1000,9999)]
         public int ZipCode { get; set; }
         public Gender GenderType { get; set; }
