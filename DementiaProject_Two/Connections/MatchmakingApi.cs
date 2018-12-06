@@ -19,18 +19,23 @@ namespace DementiaProject_Two.Connections
         public static async Task<bool> CreateUserInformation(Guid userId)
         {
             ConfigureClient();
-            bool userCreated = false;
-            HttpResponseMessage response = await client.PostAsJsonAsync(@"api/makeNewController/createuser", userId);
+            bool success = false;
+            HttpResponseMessage response = await client.PostAsJsonAsync(@"api/user/createuser", userId);
             try
             {
                 response.EnsureSuccessStatusCode();
-                userCreated = await response.Content.ReadAsAsync<bool>();
+                success = true;
             }
             catch(Exception ex)
             {
 
             }
-            return userCreated;
+            return success;
+        }
+
+        public static async Task AddToUserInformation(UserInfoDTO userInfo)
+        {
+
         }
 
         public static async Task<UserInformationModel> GetMatch(Guid userId)

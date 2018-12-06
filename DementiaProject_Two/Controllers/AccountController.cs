@@ -9,6 +9,7 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Options;
+using DementiaProject_Two.Connections;
 
 namespace DementiaProject_Two.Controllers
 {
@@ -95,6 +96,7 @@ namespace DementiaProject_Two.Controllers
                     ModelState.AddModelError(string.Empty, "Invalid login!");
                 }
             }
+            // we have to create the UserInformation object here through the api! <---------------- NOTICE!!!
             return View(user);
 
         }

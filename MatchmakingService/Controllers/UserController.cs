@@ -33,5 +33,14 @@ namespace MatchmakingService.Controllers
         {
             return Ok(_repo.GetAll());
         }
+
+        [HttpPost]
+        [Route("createuser")]
+        public void CreateUserInformation(Guid userId)
+        {
+            var user = new UserInfo { IdentityFK = userId };
+            _repo.Add(user);
+            _repo.SaveChanges();
+        }
     }
 }

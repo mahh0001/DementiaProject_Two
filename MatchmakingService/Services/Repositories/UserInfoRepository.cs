@@ -22,6 +22,11 @@ namespace MatchmakingService.Services.Repositories
             }
         }
 
+        public void SaveChanges()
+        {
+            MatchmakingContext.SaveChanges();
+        }
+
         public UserInfo GetInfoWithGuid(Guid id)
         {
             return MatchmakingContext.UserInfos.FirstOrDefault(x => x.IdentityFK == id);
