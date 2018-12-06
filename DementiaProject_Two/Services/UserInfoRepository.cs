@@ -18,9 +18,9 @@ namespace DementiaProject_Two.Repositories
             this.context = context;
         }
 
-        public UserInformationModel Get(Guid id)
+        public UserInformationModel Get(string  email)
         {
-            return context.UserInformations.FirstOrDefault(x => x.Id == id);
+            return context.UserInformations.FirstOrDefault(x => x.Email == email);
         }
 
         public UserInformationModel Update(UserInformationModel userInfo)

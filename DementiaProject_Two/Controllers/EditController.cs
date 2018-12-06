@@ -28,11 +28,11 @@ namespace DementiaProject_Two.Controllers
         public IActionResult Index()
         {
             var user = Userman.FindByEmailAsync(User.Identity.Name).Result;
-            var userInformation = repo.Get(new Guid(user.Id));
+            var userInformation = repo.Get(user.Email);
 
             if(userInformation == null)
             {
-                userInformation = new UserInformationModel() { Id = new Guid(user.Id) };
+                userInformation = new UserInformationModel() { Email = user.Email };
             }
             return View(userInformation);
         }
