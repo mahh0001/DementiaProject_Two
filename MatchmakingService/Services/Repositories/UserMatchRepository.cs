@@ -47,9 +47,9 @@ namespace MatchmakingService.Services.Repositories
             return null;
         }
 
-        public IActionResult SaveMatchChoice(Guid currentUser, Guid potentialMatchUser, bool match)
+        public bool SaveMatchChoice(Guid currentUser, Guid potentialMatchUser, bool match)
         {
-            return null;
+            return true;
         }
     }
 }

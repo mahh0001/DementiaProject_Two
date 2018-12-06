@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MatchmakingService.Models;
+using MatchmakingService.Services.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +13,15 @@ namespace MatchmakingService.Controllers
     [ApiController]
     public class MatchController : ControllerBase
     {
-        public MatchController()
+        IUserMatchRepository _repo;
+        public MatchController(IUserMatchRepository repo)
         {
+            _repo = repo;
+        }
 
+        public async Task<ActionResult<UserInfo>> GetMatch()
+        {
+            var user = _repo.
         }
 
 
