@@ -10,13 +10,13 @@ namespace DementiaProject_Two.DataContexts
 {
     public class UserInformationContext : DbContext
     {
-        public UserInformationContext(DbContextOptions<UserInformationContext> options) : base(options)
+        public UserInformationContext(DbContextOptions<UserInformationContext> options) : base (options)
         {
             Database.EnsureCreated();
         }
 
         public DbSet<UserInformationModel> UserInformations { get; set; }
 
-        public DbSet<DementiaProject_Two.ViewModels.UserViewModel> UserViewModel { get; set; }
+       // public DbSet<UserViewModel> UserViewModel { get; set; }
     }
 }

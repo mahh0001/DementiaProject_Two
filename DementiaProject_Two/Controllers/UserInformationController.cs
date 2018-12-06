@@ -29,12 +29,12 @@ namespace DementiaProject_Two.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(UserInformationModel userInfo, IFormFile picture)
         {
+            //For saving a picture in the database
             using (MemoryStream stream = new MemoryStream())
             {
                 await picture.CopyToAsync(stream);
                 userInfo.Picture = stream.ToArray();
-            
-                
+
                 ViewData["Picture"] = Convert.ToBase64String(userInfo.Picture);
             }
 
