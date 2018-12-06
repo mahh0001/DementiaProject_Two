@@ -14,28 +14,28 @@ namespace MatchmakingService.DataContext
             SaveChanges();
         }
         public DbSet<UserInfo> UserInfos { get; set; }
-        public DbSet<Activity> Activities { get; set; }
-        public DbSet<UserMatch> Matches { get; set; }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // Model is used to define a many to many relation in EF Core
-            // Bridging tabel ActivityUser
-            modelBuilder.Entity<ActivityUser>()
-                .HasKey(activityUser => new { activityUser.ActivityId, activityUser.UserInfoId });
-            modelBuilder.Entity<ActivityUser>()
-                .HasOne(activityUser => activityUser.Activity)
-                .WithMany(activity => activity.ActivityUsers)
-                .HasForeignKey(actirityUser => actirityUser.UserInfoId);
-            modelBuilder.Entity<ActivityUser>()
-                .HasOne(activityUser => activityUser.UserInfo)
-                .WithMany(userInfo => userInfo.ActivityUsers)
-                .HasForeignKey(activityUser => activityUser.ActivityId);
+        //public DbSet<Activity> Activities { get; set; }
+        //public DbSet<UserMatch> Matches { get; set; }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    // Model is used to define a many to many relation in EF Core
+        //    // Bridging tabel ActivityUser
+        //    modelBuilder.Entity<ActivityUser>()
+        //        .HasKey(activityUser => new { activityUser.ActivityId, activityUser.UserInfoId });
+        //    modelBuilder.Entity<ActivityUser>()
+        //        .HasOne(activityUser => activityUser.Activity)
+        //        .WithMany(activity => activity.ActivityUsers)
+        //        .HasForeignKey(actirityUser => actirityUser.UserInfoId);
+        //    modelBuilder.Entity<ActivityUser>()
+        //        .HasOne(activityUser => activityUser.UserInfo)
+        //        .WithMany(userInfo => userInfo.ActivityUsers)
+        //        .HasForeignKey(activityUser => activityUser.ActivityId);
 
-            // Creating an PK for the UserMatch table.
-            modelBuilder.Entity<UserMatch>()
-                .HasKey(matches => new { matches.User1Id, matches.User2Id });
+        //    // Creating an PK for the UserMatch table.
+        //    modelBuilder.Entity<UserMatch>()
+        //        .HasKey(matches => new { matches.User1Id, matches.User2Id });
 
-        }
+        //}
 
     }
 }
