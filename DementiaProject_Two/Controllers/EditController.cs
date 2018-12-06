@@ -23,8 +23,8 @@ namespace DementiaProject_Two.Controllers
         public UserInformationModel UserInfo { get; set; }
         public UserManager<IdentityUser> Userman { get; }
 
-        [HttpGet]
         [Authorize]
+        [HttpGet(Name = "Index")]
         public IActionResult Index()
         {
             var user = Userman.FindByEmailAsync(User.Identity.Name).Result;
@@ -34,6 +34,7 @@ namespace DementiaProject_Two.Controllers
             {
                 userInformation = new UserInformationModel() { Email = user.Email };
             }
+
             var userToMap = Mapper.Map<UserViewModel>(userInformation);
             return View(userToMap);
         }
@@ -49,25 +50,28 @@ namespace DementiaProject_Two.Controllers
             {
                 return RedirectToAction("Index");
             }
-            var info = repo.GetUserInfoByEmail(userModel.Email);
-
-            
+            var info = repo.GetUserInfoByEmail(User.Identity.Name);
 
 
             if (info == null)
             {
-                var infoToMap = Mapper.Map<UserInformationModel>(info);
+                var infoToMap = Mapper.Map<UserInformationModel>(userModel);
                 repo.AddUserInfo(infoToMap);
+                return RedirectToAction("Index");
             }
             else
             { 
-                var infoToReMap = Mapper.Map<UserInformationModel>(info);
-                repo.Update(infoToReMap);
+                info = Mapper.Map<UserInformationModel>(userModel);
+                repo.Update(info);
             }
-           
-            return RedirectToAction("Index");
+            return CreatedAtRoute("GetUser", new { id = info.Email});
+
+        }
+        [HttpGet(Name = "GetUser")]
+        public IActionResult GetUser()
+        {
+            return View();
         }
 
-      
     }
 }

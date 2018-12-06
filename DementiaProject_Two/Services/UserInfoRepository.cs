@@ -19,7 +19,7 @@ namespace DementiaProject_Two.Repositories
             context.SaveChanges();
         }
 
-        public UserInformationModel GetUserInfoByEmail(string  email)
+        public UserInformationModel GetUserInfoByEmail(string email)
         {
             return context.UserInformations.FirstOrDefault(x => x.Email == email);
         }

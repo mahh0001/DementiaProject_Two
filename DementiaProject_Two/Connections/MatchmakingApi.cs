@@ -43,6 +43,7 @@ namespace DementiaProject_Two.Connections
                 Match = match
             };
             HttpResponseMessage response = await client.PostAsJsonAsync(@"api/match/savematch", matchDto);
+            return true;
         }
 
     }

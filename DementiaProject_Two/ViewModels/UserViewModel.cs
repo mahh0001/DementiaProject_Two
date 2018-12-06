@@ -6,14 +6,7 @@ using System.Threading.Tasks;
 
 namespace DementiaProject_Two.ViewModels
 {
-    public enum Gender
-    {
-        Male,
-        Female,
-        Binary,
-        Feline
-    }
-    public class UserViewModel
+    public class UserViewModel 
     {
         [MinLength(2)]
         public string FirstName { get; set; }
@@ -25,7 +18,14 @@ namespace DementiaProject_Two.ViewModels
         public int ZipCode { get; set; }
         public Gender GenderType { get; set; }
         public byte[] Picture { get; set; }
-        [Key]
         public string Email { get; set; }
+    }
+
+    public enum Gender
+    {
+        Male,
+        Female,
+        Binary,
+        Feline
     }
 }

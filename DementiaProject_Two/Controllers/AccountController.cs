@@ -60,7 +60,7 @@ namespace DementiaProject_Two.Controllers
             else
             {
                 // handle this
-                return View();
+                return View(user);
             }
         }
 
