@@ -21,7 +21,7 @@ namespace DementiaProject_Two.Controllers
             _userManager = userManager;
           //  this.repo = repo;
         }
-        private IRepository repo;
+        //private IRepository repo;
 
         //public UserInformationModel UserInfo { get; set; }
         public UserManager<IdentityUser> _userManager { get; }
@@ -58,8 +58,10 @@ namespace DementiaProject_Two.Controllers
             {
                 return RedirectToAction("Index");
             }
-            var info = repo.GetUserInfoByEmail(User.Identity.Name);
+            //var info = repo.GetUserInfoByEmail(User.Identity.Name);
 
+            var guid = Guid.Parse(_userManager.FindByEmailAsync(User.Identity.Name).Result.Id);
+            var info = await MatchmakingApi.GetUserInformation(guid); // weird naming 
 
             if (info == null)
             {
@@ -71,10 +73,10 @@ namespace DementiaProject_Two.Controllers
             else
             { 
                 info = Mapper.Map<UserInfoDTO>(userModel);
-                repo.Update(info);
+                await MatchmakingApi.UpdateUserInformation(info);
             }
-            return CreatedAtRoute("GetUser", new { id = info.Email});
-
+            return CreatedAtRoute("GetUser", info); //, new { id = info.Email}); <--- what was happening here? The GetUser method takes no params
+            // Might have broken somehting here.
         }
         [HttpGet(Name = "GetUser")]
         public IActionResult GetUser()
