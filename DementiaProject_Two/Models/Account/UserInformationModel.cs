@@ -14,6 +14,6 @@ namespace DementiaProject_Two.Models.Account
         public byte[] Picture { get; set; }
         //Fremmednøgle til Identity
         [Key]
-        public Guid Id { get; set; }
+        public string Email { get; set; }
     }
 }
