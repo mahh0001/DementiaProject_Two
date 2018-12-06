@@ -51,6 +51,8 @@ namespace DementiaProject_Two.Controllers
             }
             var info = repo.GetUserInfoByEmail(userModel.Email);
 
+            
+
 
             if (info == null)
             {
@@ -58,13 +60,9 @@ namespace DementiaProject_Two.Controllers
                 repo.AddUserInfo(infoToMap);
             }
             else
-            {
-                info.Age = userModel.Age;
-                info.FirstName = userModel.FirstName;
-                info.LastName = userModel.LastName;
-                info.ZipCode = userModel.ZipCode;
-                info.Gender = userModel.GenderType.ToString();
-                repo.Update(info);
+            { 
+                var infoToReMap = Mapper.Map<UserInformationModel>(info);
+                repo.Update(infoToReMap);
             }
            
             return RedirectToAction("Index");

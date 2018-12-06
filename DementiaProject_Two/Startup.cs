@@ -92,6 +92,7 @@ namespace DementiaProject_Two
             Mapper.Initialize(config => 
             {
                 config.CreateMap<UserInformationModel, UserViewModel>();
+                config.CreateMap<UserViewModel, UserInformationModel>();
             });
             
             app.UseAuthentication();
