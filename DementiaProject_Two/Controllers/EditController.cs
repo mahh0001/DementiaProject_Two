@@ -35,7 +35,7 @@ namespace DementiaProject_Two.Controllers
             return View(userInformation);
         }
         [HttpPost]
-        public IActionResult Update([FromForm]UserInformationModel userModel)
+        public IActionResult Update([FromForm, Bind(include: "FirstName, LastName, Gender, Id, ZipCode, Picture")]UserInformationModel userModel)
         {
            if(userModel == null)
             {
