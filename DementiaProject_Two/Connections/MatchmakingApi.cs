@@ -14,7 +14,7 @@ namespace DementiaProject_Two.Connections
         private static void ConfigureClient()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri(@"http://localhost:57731/");
+            client.BaseAddress = new Uri(@"http://localhost:5050/");
         }
 
         public static async Task<UserInfo> GetMatch(Guid userId)
