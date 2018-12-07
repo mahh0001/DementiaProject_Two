@@ -1,10 +1,7 @@
-﻿using DementiaProject_Two.Models.Account;
-using DementiaProject_Two.Repositories;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using DementiaProject_Two.ViewModels;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using AutoMapper;
 using DementiaProject_Two.Connections;

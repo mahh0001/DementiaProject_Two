@@ -7,7 +7,7 @@ namespace MatchmakingService.Services.Repositories
     public interface IUserInfoRepository : IRepository<UserInfo>
     {
         void SaveChanges();
-        UserInfo GetInfoWithGuid(Guid id);
+        UserInfo GetInfoWithGuid(Guid id);                 
         void AddUserInfo(UserInfoDTO userInfo);
     }
 }
