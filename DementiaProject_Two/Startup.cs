@@ -30,7 +30,6 @@ namespace DementiaProject_Two
         {    
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.Configure<Tokens>(Configuration.GetSection("Tokens"));
 
             services.AddTransient<MatchmakingApi>();
@@ -87,8 +86,6 @@ namespace DementiaProject_Two
 
             Mapper.Initialize(config => 
             {
-                config.CreateMap<UserInformationModel, UserModel>();
-                config.CreateMap<UserModel, UserInformationModel>();
                 config.CreateMap<UserModel, UserInfoDTO>();
                 config.CreateMap<UserInfoDTO, UserModel>();
             });

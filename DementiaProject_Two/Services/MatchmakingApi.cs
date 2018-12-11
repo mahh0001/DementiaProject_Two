@@ -56,19 +56,17 @@ namespace DementiaProject_Two.Services
         public async Task AddUserInformation(UserInfoDTO userInfo)
         {
             ConfigureClient();
-            bool addSuccessful = false;
+            
             HttpResponseMessage response = await client.PostAsJsonAsync($@"api/user/add/", userInfo);
             try
             {
                 response.EnsureSuccessStatusCode();
-                //addSuccessful = await response.Content.ReadAsAsync<bool>();
+                
             }
             catch (Exception ex)
             {
                 
             }
-            //return addSuccessful;
-
         }
 
         public async Task<bool> UpdateUser(UserModel userModel)
@@ -113,15 +111,15 @@ namespace DementiaProject_Two.Services
             }
             return saveSucceeded;
         }
-        public async Task<UserInformationModel> GetMatch(Guid userId)
+        public async Task<UserModel> GetMatch(Guid userId)
         {
             ConfigureClient();
-            UserInformationModel user = null;
+            UserModel user = null;
             HttpResponseMessage response = await client.PostAsJsonAsync(@"api/match/getmatch", userId);
             try
             {
                 response.EnsureSuccessStatusCode();
-                user = await response.Content.ReadAsAsync<UserInformationModel>();
+                user = await response.Content.ReadAsAsync<UserModel>();
             }
             catch (Exception ex)
             {
