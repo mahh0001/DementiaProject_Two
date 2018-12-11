@@ -2,7 +2,6 @@
 using AutoMapper;
 using DementiaProject_Two.DataContexts;
 using DementiaProject_Two.Models;
-using DementiaProject_Two.Models.Account;
 using DementiaProject_Two.Models.User;
 using DementiaProject_Two.Services;
 using Microsoft.AspNetCore.Builder;

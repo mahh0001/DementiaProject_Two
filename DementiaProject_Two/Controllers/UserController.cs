@@ -12,6 +12,7 @@ using DementiaProject_Two.Models.User;
 
 namespace DementiaProject_Two.Controllers
 {
+    [Authorize]
     [Route("[controller]/[action]")]
     public class UserController : Controller
     {
@@ -26,23 +27,25 @@ namespace DementiaProject_Two.Controllers
         public UserInformationModel UserInfo { get; set; }
         public UserManager<IdentityUser> UserManager { get; }
 
-        [Authorize]
         [HttpGet(Name = "Index")]
         public async Task<IActionResult> Index()
         {
-            var user = UserManager.FindByEmailAsync(User.Identity.Name).Result;
-            var userInformation = await _proxy.GetEntityAsync<UserInfoDTO>($@"http://localhost:44375/api/user/{user.Id}");
+            return View();
+        }
 
-            if(userInformation == null)
+        [HttpDelete]
+        public async Task<IActionResult> Delete()
+        {
+            var user = UserManager.FindByEmailAsync(User.Identity.Name).Result;
+            bool success = await _proxy.DeleteUser(Guid.Parse(user.Id));
+            if (success)
             {
                 return RedirectToAction("Index", "Home");
             }
-
-            var userToMap = Mapper.Map<UserModel>(userInformation);
-            return View(userToMap);
+            return StatusCode(500);
         }
 
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult> Update([FromForm] UserModel userModel)
         {
             if (userModel == null)
@@ -56,10 +59,20 @@ namespace DementiaProject_Two.Controllers
             return RedirectToAction("Index");
 
         }
+
         [HttpGet(Name = "GetUser")]
-        public IActionResult GetUser()
+        public async Task<IActionResult> GetUser()
         {
-            return View();
+            var user = UserManager.FindByEmailAsync(User.Identity.Name).Result;
+            var userInformation = await _proxy.GetEntityAsync<UserInfoDTO>($@"http://localhost:44375/api/user/{user.Id}");
+
+            if (userInformation == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var userToMap = Mapper.Map<UserModel>(userInformation);
+            return View(userToMap);
         }
 
     }
