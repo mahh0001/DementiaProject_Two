@@ -53,7 +53,7 @@ namespace DementiaProject_Two.Services
             return deleteSucceded;
         }
 
-        public async Task<bool> AddUserInformation(UserInfoDTO userInfo)
+        public async Task AddUserInformation(UserInfoDTO userInfo)
         {
             ConfigureClient();
             bool addSuccessful = false;
@@ -61,13 +61,13 @@ namespace DementiaProject_Two.Services
             try
             {
                 response.EnsureSuccessStatusCode();
-                addSuccessful = await response.Content.ReadAsAsync<bool>();
+                //addSuccessful = await response.Content.ReadAsAsync<bool>();
             }
             catch (Exception ex)
             {
                 
             }
-            return addSuccessful;
+            //return addSuccessful;
 
         }
 

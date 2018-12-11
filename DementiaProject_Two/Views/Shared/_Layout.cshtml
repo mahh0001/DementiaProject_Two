@@ -12,10 +12,10 @@
             <img class="logo" src="~/images/LogoWithoutText.png" /> 
             <nav id="nav">
                 <a asp-controller="Home" asp-action="Index">Home</a>
+                    <a asp-controller="User" asp-action="Index">Profil</a>
                 @if (User.Identity.IsAuthenticated)
                 {
                     <a asp-controller="Match" asp-action="Index">Find kærligheden</a>
-                    <a asp-controller="User" asp-action="Index">Profil</a>
                     <a asp-controller="Account" asp-action="Logout">Logout</a>
                 }
                 else

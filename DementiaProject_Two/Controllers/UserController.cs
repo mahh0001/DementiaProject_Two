@@ -58,33 +58,28 @@ namespace DementiaProject_Two.Controllers
             var userInfoDto = await _proxy.GetEntityAsync<UserInfoDTO>($@"https://localhost:44375/api/user/{GetUserIdentity()}");
             var userInfo = Mapper.Map<UserModel>(userInfoDto);
 
-            return View("Index", userInfo);
+            return View(userInfo);
         }
 
         [HttpPut]
         public async Task<IActionResult> Update([FromForm] UserModel userModel)
         {
-            bool success = false;
             if (userModel == null)
             {
                 return BadRequest();
             }
             if (ModelState.IsValid)
             {
-                success = await _proxy.UpdateUser(userModel); // bool?
+                await _proxy.UpdateUser(userModel); // bool?
             }
-            if (success)
-            {
-                return RedirectToAction("Index");
-            }
-            return StatusCode(500);
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
         public IActionResult Add()
         {
             var model = new UserModel { IdentityFK = Guid.Parse(GetUserIdentity()) };
-            return View("Index", model);
+            return View(model);
         }
 
         [HttpPost]
@@ -97,16 +92,9 @@ namespace DementiaProject_Two.Controllers
 
             var userInfo = Mapper.Map<UserInfoDTO>(userModel);
             userInfo.Gender = userModel.GenderType.ToString();
-            bool success = await _proxy.AddUserInformation(userInfo);
+            await _proxy.AddUserInformation(userInfo);
 
-            if (success)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                return StatusCode(500);
-            }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet(Name = "GetUser")]
