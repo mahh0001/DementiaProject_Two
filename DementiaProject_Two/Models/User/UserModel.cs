@@ -17,7 +17,7 @@ namespace DementiaProject_Two.Models.User
         [Range(1000,9999)]
         public int ZipCode { get; set; }
         public Gender GenderType { get; set; }
-        public byte[] Picture { get; set; }
+        //public byte[] Picture { get; set; }
         public string Email { get; set; }
         public Guid IdentityFK { get; set; }
     }

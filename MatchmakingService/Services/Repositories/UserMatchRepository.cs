@@ -22,11 +22,13 @@ namespace MatchmakingService.Services.Repositories
             }
         }
 
-        public UserInfo FindRandomUser(Guid currentUser)
+        public UserInfo FindRandomUser(Guid currentUserFK)
         {
+            UserInfo currentUser = MatchmakingContext.UserInfos
+                .FirstOrDefault(x=>x.IdentityFK == currentUserFK);
             UserInfo potentialMatch = MatchmakingContext.UserInfos //check if both users exist and user1 wants to match with user2 OR they havent decided/seen each other yet
-                .Include(x => x.Matches.Where(y => (y.User1Id == x.IdentityFK && y.User2Id == currentUser && y.FirstSelection == true && y.IsAMatch == null) || y == null))
-                .Where(x => x.IdentityFK != currentUser)
+                .Include(x => x.Matches.Where(y => (y.UserInfo == x && y.User2 == currentUser && y.FirstSelection == true && y.IsAMatch == null) || y == null))
+                .Where(x => x.IdentityFK != currentUser.IdentityFK)
                 .FirstOrDefault();
 
             return potentialMatch;
@@ -37,15 +39,15 @@ namespace MatchmakingService.Services.Repositories
             var currentUser = MatchmakingContext.UserInfos.FirstOrDefault(x => x.IdentityFK == currentUserId);
             var potentialMatchUser = MatchmakingContext.UserInfos.Include(x => x.Matches).FirstOrDefault(x => x.IdentityFK == potentialMatchUserId);
 
-            if (potentialMatchUser.Matches.Where(x => x.User1Id == potentialMatchUserId && x.User2Id == currentUserId && x.FirstSelection == true).Count() == 1)
+            if (potentialMatchUser.Matches.Where(x => x.UserInfo == potentialMatchUser && x.User2 == currentUser && x.FirstSelection == true).Count() == 1)
             {
-                UserMatch match = potentialMatchUser.Matches.Where(x => x.User1Id == potentialMatchUserId && x.User2Id == currentUserId && x.FirstSelection == true).FirstOrDefault();
+                UserMatch match = potentialMatchUser.Matches.Where(x => x.UserInfo == potentialMatchUser && x.User2 == currentUser && x.FirstSelection == true).FirstOrDefault();
                 match.IsAMatch = userMatch;
                 MatchmakingContext.Update(match);
             }
             else
             {
-                UserMatch newUserMatch = new UserMatch { User1 = currentUser, User2 = potentialMatchUser, FirstSelection = userMatch } ;
+                UserMatch newUserMatch = new UserMatch { UserInfo = currentUser, User2 = potentialMatchUser, FirstSelection = userMatch } ;
                 currentUser.Matches.Add(newUserMatch);
             }
             var state = MatchmakingContext.SaveChanges();

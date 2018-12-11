@@ -26,43 +26,40 @@ namespace DementiaProject_Two.Services
             client.BaseAddress = new Uri(@"http://localhost:44375/");
         }
 
-        public async Task<bool> CreateUserInformation(Guid userId)
+
+        public async Task<bool> DeleteUser(Guid userId)
         {
             ConfigureClient();
-            bool success = false;
-            HttpResponseMessage response = await client.PostAsJsonAsync(@"api/user/createuser", userId);
+            bool deleteSucceded = false;
+            HttpResponseMessage response = await client.DeleteAsync($@"api/user/delete/{userId}");
             try
             {
                 response.EnsureSuccessStatusCode();
-                success = true;
-            }
-            catch(Exception ex)
-            {
-
-            }
-            return success;
-        }
-
-        public async Task AddToUserInformation(UserInfoDTO userInfo)
-        {
-
-        }
-
-        public async Task<UserInformationModel> GetMatch(Guid userId)
-        {
-            ConfigureClient();
-            UserInformationModel user = null;
-            HttpResponseMessage response = await client.PostAsJsonAsync(@"api/match/getmatch", userId);
-            try
-            {
-                response.EnsureSuccessStatusCode();
-                user = await response.Content.ReadAsAsync<UserInformationModel>();
+                deleteSucceded = await response.Content.ReadAsAsync<bool>();
             }
             catch (Exception ex)
             {
-
+                
             }
-            return user;
+            return deleteSucceded;
+        }
+
+        public async Task<bool> AddUserInformation(UserInfoDTO userInfo)
+        {
+            ConfigureClient();
+            bool addSuccessful = false;
+            HttpResponseMessage response = await client.PostAsJsonAsync($@"api/user/add/", userInfo);
+            try
+            {
+                response.EnsureSuccessStatusCode();
+                addSuccessful = await response.Content.ReadAsAsync<bool>();
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            return addSuccessful;
+
         }
 
         public async Task<bool> UpdateUser(UserModel userModel)
@@ -107,6 +104,21 @@ namespace DementiaProject_Two.Services
             }
             return saveSucceeded;
         }
+        public async Task<UserInformationModel> GetMatch(Guid userId)
+        {
+            ConfigureClient();
+            UserInformationModel user = null;
+            HttpResponseMessage response = await client.PostAsJsonAsync(@"api/match/getmatch", userId);
+            try
+            {
+                response.EnsureSuccessStatusCode();
+                user = await response.Content.ReadAsAsync<UserInformationModel>();
+            }
+            catch (Exception ex)
+            {
 
+            }
+            return user;
+        }
     }
 }
