@@ -43,7 +43,7 @@ namespace DementiaProject_Two.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update([FromForm] UserModel userModel)
+        public async Task<IActionResult> Update([FromForm] UserModel userModel)
         {
             if (userModel == null)
             {
@@ -51,7 +51,7 @@ namespace DementiaProject_Two.Controllers
             }
             if (ModelState.IsValid)
             {
-                _proxy.UpdateUser(userModel);
+               await _proxy.UpdateUser(userModel);
             }
             return RedirectToAction("Index");
 
