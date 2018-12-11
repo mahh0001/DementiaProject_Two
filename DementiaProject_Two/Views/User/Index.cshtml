@@ -1,5 +1,5 @@
-﻿@model DementiaProject_Two.ViewModels.UserViewModel
-@using DementiaProject_Two.ViewModels
+﻿@model DementiaProject_Two.Models.User.UserModel
+@using DementiaProject_Two.Models.User
 
 @{
     ViewData["Title"] = "Index";
@@ -39,11 +39,6 @@
                     <option selected="selected" value="Please Select">Please select</option> class="form-control"
                 </select>
                 <span asp-validation-for="GenderType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Picture" class="control-label"></label>
-                <input asp-for="Picture" class="form-control" />
-                <span asp-validation-for="Picture" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
