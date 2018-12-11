@@ -47,6 +47,11 @@ namespace MatchmakingService
             {
                 app.UseHsts();
             }
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<UserInfoDTO, UserInfo>();
+                
+            });
             app.UseMvc();
         }
     }
