@@ -1,8 +1,6 @@
-﻿using DementiaProject_Two.Models.Account;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using AutoMapper;
 using DementiaProject_Two.Services;
@@ -18,26 +16,35 @@ namespace DementiaProject_Two.Controllers
     {
         private readonly MatchmakingApi _proxy;
 
-        public UserController(UserManager<IdentityUser> userman, MatchmakingApi proxy)
+        public UserManager<IdentityUser> UserManager { get; }
+
+        public UserController(UserManager<IdentityUser> userManager, MatchmakingApi proxy)
         {
-            UserManager = userman;
+            UserManager = userManager;
             _proxy = proxy;
         }
 
-        public UserInformationModel UserInfo { get; set; }
-        public UserManager<IdentityUser> UserManager { get; }
+        private string GetUserIdentity()
+        {
+            return UserManager.FindByEmailAsync(User.Identity.Name).Result.Id;
+        }
 
         [HttpGet(Name = "Index")]
         public async Task<IActionResult> Index()
         {
-            return View();
+            var userId = GetUserIdentity();
+            var userInformation = await _proxy.GetEntityAsync<UserInfoDTO>($@"https://localhost:44375/api/user/{userId}");
+            if (userInformation != null)
+            {
+                return RedirectToAction("Update", "User");
+            }
+            return RedirectToAction("Add", "User");
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete()
         {
-            var user = UserManager.FindByEmailAsync(User.Identity.Name).Result;
-            bool success = await _proxy.DeleteUser(Guid.Parse(user.Id));
+            bool success = await _proxy.DeleteUser(Guid.Parse(GetUserIdentity()));
             if (success)
             {
                 return RedirectToAction("Index", "Home");
@@ -45,26 +52,67 @@ namespace DementiaProject_Two.Controllers
             return StatusCode(500);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Update()
+        {
+            var userInfoDto = await _proxy.GetEntityAsync<UserInfoDTO>($@"https://localhost:44375/api/user/{GetUserIdentity()}");
+            var userInfo = Mapper.Map<UserModel>(userInfoDto);
+
+            return View("Index", userInfo);
+        }
+
         [HttpPut]
         public async Task<IActionResult> Update([FromForm] UserModel userModel)
         {
+            bool success = false;
             if (userModel == null)
             {
                 return BadRequest();
             }
             if (ModelState.IsValid)
             {
-               await _proxy.UpdateUser(userModel);
+                success = await _proxy.UpdateUser(userModel); // bool?
             }
-            return RedirectToAction("Index");
+            if (success)
+            {
+                return RedirectToAction("Index");
+            }
+            return StatusCode(500);
+        }
 
+        [HttpGet]
+        public IActionResult Add()
+        {
+            var model = new UserModel { IdentityFK = Guid.Parse(GetUserIdentity()) };
+            return View("Index", model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add([FromForm] UserModel userModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var userInfo = Mapper.Map<UserInfoDTO>(userModel);
+            userInfo.Gender = userModel.GenderType.ToString();
+            bool success = await _proxy.AddUserInformation(userInfo);
+
+            if (success)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpGet(Name = "GetUser")]
         public async Task<IActionResult> GetUser()
         {
-            var user = UserManager.FindByEmailAsync(User.Identity.Name).Result;
-            var userInformation = await _proxy.GetEntityAsync<UserInfoDTO>($@"http://localhost:44375/api/user/{user.Id}");
+            var userInformation = await _proxy.GetEntityAsync<UserInfoDTO>($@"https://localhost:44375/api/user/{GetUserIdentity()}");
 
             if (userInformation == null)
             {
@@ -74,6 +122,5 @@ namespace DementiaProject_Two.Controllers
             var userToMap = Mapper.Map<UserModel>(userInformation);
             return View(userToMap);
         }
-
     }
 }

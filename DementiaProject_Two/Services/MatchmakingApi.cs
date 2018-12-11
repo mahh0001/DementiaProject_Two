@@ -15,15 +15,24 @@ namespace DementiaProject_Two.Services
         // Using wonderfull generics <3
         public async Task<T> GetEntityAsync<T>(string url) where T : class
         {
-            var client = new HttpClient();
-            string json = await client.GetStringAsync(url);
+            string json = string.Empty;
+            client = new HttpClient();
+            try
+            {
+                json = await client.GetStringAsync(url);
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
             return JsonConvert.DeserializeObject<T>(json);
         }
 
         private void ConfigureClient()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri(@"http://localhost:44375/");
+            client.BaseAddress = new Uri(@"https://localhost:44375/");
         }
 
 

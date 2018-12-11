@@ -19,7 +19,7 @@ namespace DementiaProject_Two.Models.User
         public Gender GenderType { get; set; }
         //public byte[] Picture { get; set; }
         public string Email { get; set; }
-        public Guid IdentityFK { get; set; }
+        public Guid IdentityFK { get; set; } 
     }
 
     public enum Gender

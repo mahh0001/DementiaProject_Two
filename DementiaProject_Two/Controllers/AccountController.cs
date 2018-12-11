@@ -55,7 +55,7 @@ namespace DementiaProject_Two.Controllers
             
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "UserInformation");
+                return RedirectToAction("Index", "User");
             }
             else
             {

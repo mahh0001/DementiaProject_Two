@@ -2,6 +2,7 @@
 using AutoMapper;
 using DementiaProject_Two.DataContexts;
 using DementiaProject_Two.Models;
+using DementiaProject_Two.Models.DataTransferObjects;
 using DementiaProject_Two.Models.User;
 using DementiaProject_Two.Services;
 using Microsoft.AspNetCore.Builder;
@@ -86,6 +87,8 @@ namespace DementiaProject_Two
             {
                 config.CreateMap<UserInformationModel, UserModel>();
                 config.CreateMap<UserModel, UserInformationModel>();
+                config.CreateMap<UserModel, UserInfoDTO>();
+                config.CreateMap<UserInfoDTO, UserModel>();
             });
             
             app.UseAuthentication();
