@@ -1,4 +1,5 @@
 ﻿using DementiaProject_Two.Models;
+using DementiaProject_Two.Models.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,7 +21,7 @@ namespace DementiaProject_Two.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult EditProfil([Bind(include:"ID, FirstName, LastName, Gender, Id, ZipCode")] UserInfoViewModel userModel)
+        public ActionResult EditProfil([Bind(include:"ID, FirstName, LastName, Gender, Id, ZipCode")] UserModel userModel)
         {
             if (userModel == null)
             {

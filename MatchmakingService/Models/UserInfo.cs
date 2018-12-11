@@ -15,10 +15,9 @@ namespace MatchmakingService.Models
         public int Age { get; set; }
         public int ZipCode { get; set; }
         public string Gender { get; set; }
-        //public byte[] Picture { get; set; }
         //Fremmednøgle til Identity
+        [Required]
         public Guid IdentityFK { get; set; }
-        //public List<ActivityUser> ActivityUsers { get; set; }
         public List<UserMatch> Matches { get; set; }
     }
 }

@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using MatchmakingService.DataContext;
+using MatchmakingService.Models;
+using MatchmakingService.Models.DataTransferObjects;
 using MatchmakingService.Services.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

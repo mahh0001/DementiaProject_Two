@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using MatchmakingService.Models;
+using MatchmakingService.Models.DataTransferObjects;
 using MatchmakingService.Services.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -34,11 +36,9 @@ namespace MatchmakingService.Controllers
             return Ok(_repo.GetAll());
         }
 
-        [HttpPost]
-        [Route("createuser")]
-        public void CreateUserInformation(Guid userId)
+        [HttpPost("add")]
+        public void AddUser([FromBody] UserInfo user)
         {
-            var user = new UserInfo { IdentityFK = userId };
             _repo.Add(user);
             _repo.SaveChanges();
         }

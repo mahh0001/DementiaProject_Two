@@ -1,5 +1,7 @@
 ﻿using DementiaProject_Two.Models.Account;
 using DementiaProject_Two.Models.DataTransferObjects;
+using DementiaProject_Two.Models.User;
+using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -9,6 +11,14 @@ namespace DementiaProject_Two.Services
     public class MatchmakingApi
     {
         private HttpClient client;
+
+        // Using wonderfull generics <3
+        public async Task<T> GetEntityAsync<T>(string url) where T : class
+        {
+            var client = new HttpClient();
+            string json = await client.GetStringAsync(url);
+            return JsonConvert.DeserializeObject<T>(json);
+        }
 
         private void ConfigureClient()
         {
@@ -53,6 +63,25 @@ namespace DementiaProject_Two.Services
 
             }
             return user;
+        }
+
+        public async Task<bool> UpdateUser(UserModel userModel)
+        {
+            ConfigureClient();
+            var response = await client.PostAsJsonAsync($@"api/user/edit/{userModel.IdentityFK}", userModel);
+
+            bool updateSucceeded = false;
+            try
+            {
+                response.EnsureSuccessStatusCode();
+                updateSucceeded = await response.Content.ReadAsAsync<bool>();
+            }
+            catch (Exception)
+            {
+                return updateSucceeded;
+            }
+
+            return updateSucceeded;
         }
 
         public async Task<bool> SaveMatchSelection(Guid currentUser, Guid otherUser, bool match)

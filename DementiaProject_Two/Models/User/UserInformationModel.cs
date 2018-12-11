@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DementiaProject_Two.Models.Account
+namespace DementiaProject_Two.Models.User
 {
     public class UserInformationModel
     {
@@ -10,7 +10,6 @@ namespace DementiaProject_Two.Models.Account
         public int Age { get; set; }
         public int ZipCode { get; set; }
         public string Gender { get; set; }
-        public byte[] Picture { get; set; }
         //Fremmednøgle til Identity
         [Key]
         public string Email { get; set; }
