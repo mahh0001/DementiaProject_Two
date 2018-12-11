@@ -43,22 +43,20 @@ namespace MatchmakingService.Controllers
             _repo.SaveChanges();
             return Ok(new { succes = true });
         }
-        [HttpPut]
-        public IActionResult EditUser([FromBody] UserInfo user)
-        {
+        //[HttpDelete]
+        //public IActionResult EditUser([FromBody] UserInfo user)
+        //{
 
-        }
-        [HttpPut]
-        public IActionResult UpdateCity([FromBody]UserInfoDTO user)
+        //}
+        [HttpPut("edit")]
+        public IActionResult UpdateUser([FromBody]UserInfoDTO user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var userToUpdate = _repo.GetInfoWithGuid(user.IdentityFK);
-            userToUpdate.FirstName = user.FirstName;
-            userToUpdate.LastName = user.LastName;
-            userToUpdate.
+            UserInfo userToUpdate = _repo.GetInfoWithGuid(user.IdentityFK);
+            userToUpdate = Mapper.Map<UserInfo>(user);
             _repo.SaveChanges();
             return Accepted();
         }
