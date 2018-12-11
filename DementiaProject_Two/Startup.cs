@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using AutoMapper;
 using DementiaProject_Two.DataContexts;
 using DementiaProject_Two.Models;
 using DementiaProject_Two.Models.Account;
-using DementiaProject_Two.Repositories;
+using DementiaProject_Two.Services;
 using DementiaProject_Two.ViewModels;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -39,11 +33,11 @@ namespace DementiaProject_Two
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.Configure<Tokens>(Configuration.GetSection("Tokens"));
 
-            services.AddScoped<IRepository, UserInfoRepository>();
+            services.AddTransient<MatchmakingApi>();
 
 
-            services.AddDbContext<UserInformationContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("UserInfoConnection")));
+            //services.AddDbContext<UserInformationContext>(options =>
+            //options.UseSqlServer(Configuration.GetConnectionString("UserInfoConnection"))); //SKal måske slettes
 
             services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
                                             .AddEntityFrameworkStores<IdentityContext>();

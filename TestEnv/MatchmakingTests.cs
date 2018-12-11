@@ -1,5 +1,4 @@
-﻿using MatchmakingService.Helpers;
-using MatchmakingService.Models;
+﻿using MatchmakingService.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;

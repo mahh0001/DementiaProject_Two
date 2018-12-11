@@ -4,19 +4,19 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace DementiaProject_Two.Connections
+namespace DementiaProject_Two.Services
 {
-    public static class MatchmakingApi
+    public class MatchmakingApi
     {
-        static HttpClient client;
+        private HttpClient client;
 
-        private static void ConfigureClient()
+        private void ConfigureClient()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri(@"http://localhost:5050/");
+            client.BaseAddress = new Uri(@"http://localhost:44375/");
         }
 
-        public static async Task<bool> CreateUserInformation(Guid userId)
+        public async Task<bool> CreateUserInformation(Guid userId)
         {
             ConfigureClient();
             bool success = false;
@@ -33,12 +33,12 @@ namespace DementiaProject_Two.Connections
             return success;
         }
 
-        public static async Task AddToUserInformation(UserInfoDTO userInfo)
+        public async Task AddToUserInformation(UserInfoDTO userInfo)
         {
 
         }
 
-        public static async Task<UserInformationModel> GetMatch(Guid userId)
+        public async Task<UserInformationModel> GetMatch(Guid userId)
         {
             ConfigureClient();
             UserInformationModel user = null;
@@ -55,7 +55,7 @@ namespace DementiaProject_Two.Connections
             return user;
         }
 
-        public static async Task<bool> SaveMatchSelection(Guid currentUser, Guid otherUser, bool match)
+        public async Task<bool> SaveMatchSelection(Guid currentUser, Guid otherUser, bool match)
         {
             ConfigureClient();
             bool saveSucceeded = false;

@@ -1,5 +1,4 @@
 ﻿using MatchmakingService.DataContext;
-using MatchmakingService.Helpers;
 using MatchmakingService.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

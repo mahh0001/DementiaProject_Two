@@ -29,13 +29,8 @@ namespace MatchmakingService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
             services.AddTransient<IUserInfoRepository, UserInfoRepository>();
-            services.AddDbContext<MatchmakingContext>(options => options.UseInMemoryDatabase("Foo"));
-            
-            // Adding the context to the container with a connection string to an actual database.
-            //services.AddDbContext<UserInfoContext>
-            //(options => options.UseSqlServer(Configuration.GetConnectionString("MatchmakingConnection")));
+            services.AddDbContext<MatchmakingContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MatchmakingConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,8 +44,6 @@ namespace MatchmakingService
             {
                 app.UseHsts();
             }
-
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
