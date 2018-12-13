@@ -39,6 +39,7 @@ namespace DementiaProject_Two.Controllers
         }
 
         [HttpPost("Register")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(Registration user)
         {
             if (!ModelState.IsValid)
