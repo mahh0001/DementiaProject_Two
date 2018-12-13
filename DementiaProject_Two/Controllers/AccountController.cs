@@ -72,6 +72,7 @@ namespace DementiaProject_Two.Controllers
         }
 
         [HttpPost("Login")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(Login user, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
