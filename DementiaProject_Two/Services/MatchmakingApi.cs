@@ -32,7 +32,7 @@ namespace DementiaProject_Two.Services
         private void ConfigureClient()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri(@"https://first");
+            client.BaseAddress = new Uri(@"https://localhost:44375");
         }
 
 

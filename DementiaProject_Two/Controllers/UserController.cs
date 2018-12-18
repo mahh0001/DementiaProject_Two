@@ -33,7 +33,7 @@ namespace DementiaProject_Two.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = GetUserIdentity();
-            var userInformation = await _proxy.GetEntityAsync<UserInfoDTO>($@"https://first/api/user/{userId}");
+            var userInformation = await _proxy.GetEntityAsync<UserInfoDTO>($@"https://localhost:44375/api/user/{userId}");
             if (userInformation != null)
             {
                 return RedirectToAction("Update", "User");
@@ -55,7 +55,7 @@ namespace DementiaProject_Two.Controllers
         [HttpGet]
         public async Task<IActionResult> Update()
         {
-            var userInfoDto = await _proxy.GetEntityAsync<UserInfoDTO>($@"https://first/api/user/{GetUserIdentity()}");
+            var userInfoDto = await _proxy.GetEntityAsync<UserInfoDTO>($@"https://localhost:44375/api/user/{GetUserIdentity()}");
             var userInfo = Mapper.Map<UserModel>(userInfoDto);
 
             return View(userInfo);
@@ -100,7 +100,7 @@ namespace DementiaProject_Two.Controllers
         [HttpGet(Name = "GetUser")]
         public async Task<IActionResult> GetUser()
         {
-            var userInformation = await _proxy.GetEntityAsync<UserInfoDTO>($@"https://first/api/user/{GetUserIdentity()}");
+            var userInformation = await _proxy.GetEntityAsync<UserInfoDTO>($@"https://localhost:44375/api/user/{GetUserIdentity()}");
 
             if (userInformation == null)
             {
